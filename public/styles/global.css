@@ -1,0 +1,21 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, Helvetica, Tahoma,Arial, Hiragino Sans GB, Microsoft YaHei, sans-serif;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/SpaceGrotesk-VariableFont_wght.ttf');
+}
+
