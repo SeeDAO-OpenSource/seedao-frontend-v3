@@ -1,22 +1,27 @@
 import { extendTheme } from '@chakra-ui/react'
 import type { ThemeTypings } from '@chakra-ui/styled-system'
 
-export const getNavButtonProps = (
-  colorScheme: ThemeTypings['colorSchemes'] = 'secondary'
-) => ({
-  fontWeight: 'semibold',
-  color: `${colorScheme}.600`,
-  _hover: {
-    bg: 'none',
-    color: `${colorScheme}.900`,
-    textDecoration: 'underline',
-  },
-  _active: {
-    bg: 'none',
-    color: `${colorScheme}.900`,
-    textDecoration: 'underline',
-  },
-})
+export const getNavButtonProps = (options?: {
+  colorScheme?: ThemeTypings['colorSchemes']
+  active?: boolean
+}) => {
+  const colorScheme = options?.colorScheme || 'secondary'
+  return {
+    fontWeight: 'semibold',
+    color: `${colorScheme}.600`,
+    _hover: {
+      bg: 'none',
+      color: `${colorScheme}.900`,
+      textDecoration: 'underline',
+    },
+    _active: {
+      bg: 'none',
+      color: `${colorScheme}.900`,
+      textDecoration: 'underline',
+    },
+    ...(options?.active ? { color: `${colorScheme}.900` } : {}),
+  }
+}
 
 const font = `'Space Grotesk', -apple-system, BlinkMacSystemFont, Helvetica, Tahoma,Arial, Hiragino Sans GB, Microsoft YaHei, sans-serif`
 

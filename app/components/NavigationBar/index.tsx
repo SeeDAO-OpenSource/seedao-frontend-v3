@@ -9,22 +9,26 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  Link,
 } from '@chakra-ui/react'
 import { useEthers } from '@usedapp/core'
 import React from 'react'
+import { RoutePath } from '~/constants/RoutePath'
 import { getNavButtonProps } from '~/themes'
+import { Link as RemixLink, useLocation } from '@remix-run/react'
 
 export const NAVIGATION_BAR_HEIGHT = 68
 
-const NavButton: React.FC<ButtonProps> = ({
+const NavButton: React.FC<ButtonProps & { active?: boolean }> = ({
   children,
   colorScheme = 'secondary',
+  active,
   ...props
 }) => (
   <Button
     variant="unstyled"
     textTransform="uppercase"
-    {...getNavButtonProps(colorScheme)}
+    {...getNavButtonProps({ colorScheme, active })}
     {...props}
   >
     {children}
@@ -84,7 +88,10 @@ const Side: React.FC = () => {
 }
 
 export const NavigationBar: React.FC = () => {
+  const location = useLocation()
   const splitLineEl = <Box bg="secondary.900" h="14px" w="2px" mx="16px" />
+  const pathnamePart1 = location.pathname.split('/')[0]
+
   return (
     <Flex
       w="full"
@@ -104,13 +111,33 @@ export const NavigationBar: React.FC = () => {
       <Image src="/assets/svg/logo.svg" w="144px" h="22px" mr="4px" />
       {splitLineEl}
       <HStack spacing="16px">
-        <NavButton>Home</NavButton>
+        <Link as={RemixLink} to={RoutePath.Home}>
+          <NavButton
+            active={
+              pathnamePart1 === RoutePath.Home ||
+              location.pathname === RoutePath.Home
+            }
+          >
+            Home
+          </NavButton>
+        </Link>
         <Menu placement="bottom">
-          <MenuButton {...getNavButtonProps()} textTransform="uppercase">
+          <MenuButton
+            {...getNavButtonProps({
+              active:
+                pathnamePart1 === RoutePath.Event ||
+                location.pathname === RoutePath.Event,
+            })}
+            textTransform="uppercase"
+          >
             Event
           </MenuButton>
           <MenuList>
-            <MenuItem>EVENT</MenuItem>
+            <MenuItem>
+              <Link as={RemixLink} to={RoutePath.Event}>
+                EVENT
+              </Link>
+            </MenuItem>
             <MenuItem>TASK</MenuItem>
           </MenuList>
         </Menu>
