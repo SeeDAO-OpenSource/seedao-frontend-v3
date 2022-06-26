@@ -84,7 +84,7 @@ const Side: React.FC = () => {
 }
 
 export const NavigationBar: React.FC = () => {
-  const splitLineEl = <Box bg="#fff" h="14px" w="2px" mx="16px" />
+  const splitLineEl = <Box bg="secondary.900" h="14px" w="2px" mx="16px" />
   return (
     <Flex
       w="full"

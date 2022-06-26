@@ -1,5 +1,5 @@
 import { extendTheme } from '@chakra-ui/react'
-import { ThemeTypings } from '@chakra-ui/styled-system'
+import type { ThemeTypings } from '@chakra-ui/styled-system'
 
 export const getNavButtonProps = (
   colorScheme: ThemeTypings['colorSchemes'] = 'secondary'
@@ -32,6 +32,7 @@ export const theme = extendTheme({
     },
   },
   colors: {
+    online: '#37FF87',
     primary: {
       100: '#000',
       200: '#000',

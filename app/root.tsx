@@ -51,14 +51,9 @@ export default function App() {
             >
               <NavigationBar />
               <AnimatePresence initial={false}>
-                <Flex
-                  direction="column"
-                  w="full"
-                  flex={1}
-                  key={location.pathname.split('/')[0]}
-                >
+                <Box w="full" key={location.pathname.split('/')[0]}>
                   {outlet}
-                </Flex>
+                </Box>
               </AnimatePresence>
             </Flex>
           </DAppProvider>
