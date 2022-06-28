@@ -16,8 +16,7 @@ import React from 'react'
 import { RoutePath } from '~/constants/RoutePath'
 import { getNavButtonProps } from '~/themes'
 import { Link as RemixLink, useLocation } from '@remix-run/react'
-
-export const NAVIGATION_BAR_HEIGHT = 68
+import { NAVIGATION_BAR_HEIGHT } from '~/constants'
 
 const NavButton: React.FC<ButtonProps & { active?: boolean }> = ({
   children,
@@ -98,7 +97,7 @@ export const NavigationBar: React.FC = () => {
       h={`${NAVIGATION_BAR_HEIGHT}px`}
       align="center"
       px="20px"
-      borderTop="1px"
+      border="1px"
       borderBottom="1px"
       borderStyle="solid"
       borderColor="secondary.900"

@@ -13,7 +13,6 @@ import {
 import { useRef, useMemo, useState, useEffect } from 'react'
 import BackgroundVideoPoster from '~/assets/png/seedao_index_poster.png'
 import BackgroundVideo from '~/assets/video/seedao_index.mp4'
-import { NAVIGATION_BAR_HEIGHT } from '~/components/NavigationBar'
 import { Link as RemixLink } from '@remix-run/react'
 import { HomeHeading, Indicator } from '~/components/HomeComponents'
 import { CollapseBar } from '~/components/CollapseBar'
@@ -22,9 +21,12 @@ import HomeIndex from './home/index'
 import Roadmap from './home/roadmap'
 import About from './home/about'
 import { Fade } from '~/components/Fade'
+import { NAVIGATION_BAR_HEIGHT } from '~/constants'
+import { ScrollContainer } from '~/components/ScrollContainer'
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
   const location = useLocation()
   const pageOffsetX = useMemo(() => {
     if (location.pathname === RoutePath.HomeRoadmap) {
@@ -62,6 +64,10 @@ export default function Home() {
       setIsShowIndexSideBar(false)
     }
   }, [isShowIndexSideBarByPathname])
+
+  useEffect(() => {
+    scrollContainerRef.current?.scroll(0, 0)
+  }, [location.pathname])
 
   return (
     <Grid
@@ -278,7 +284,7 @@ export default function Home() {
         top="1px"
         left="50%"
         zIndex={2}
-        h="full"
+        h="calc(100% - 1px)"
         w="0"
         style={{
           opacity: isShowIndexSideBar && !isHome ? 1 : 0,
@@ -311,22 +317,25 @@ export default function Home() {
           <HomeHeading sub="路线图">Roadmap</HomeHeading>
         </CollapseBar>
       </Grid>
-      <Box
+      <ScrollContainer
+        ref={scrollContainerRef}
         borderLeft="1px"
         borderStyle="solid"
         borderColor="secondary.900"
         position="relative"
         overflowX="hidden"
-        overflowY="auto"
+        overflowY="scroll"
       >
         <Grid
-          h="full"
           templateRows="100%"
           templateColumns="repeat(3, calc(100% / 3))"
           w="300%"
-          transform={`translateX(${pageOffsetX})`}
           transition={`${transition}ms`}
           position="relative"
+          h="full"
+          style={{
+            transform: `translateX(${pageOffsetX})`,
+          }}
         >
           <Fade isOpen={isHome}>
             <HomeIndex />
@@ -351,7 +360,6 @@ export default function Home() {
           </Grid>
           <Grid
             h="full"
-            templateRows="100%"
             templateColumns="60px 60px calc(100% - 60px - 60px)"
             position="relative"
           >
@@ -376,7 +384,7 @@ export default function Home() {
             </Fade>
           </Grid>
         </Grid>
-      </Box>
+      </ScrollContainer>
     </Grid>
   )
 }

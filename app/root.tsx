@@ -10,9 +10,14 @@ import {
 } from '@remix-run/react'
 import { ChakraProvider } from '@chakra-ui/react'
 import { DAppProvider } from '@usedapp/core'
-import { Flex, Box } from '@chakra-ui/react'
+import { Grid, Box, Center } from '@chakra-ui/react'
 import { theme } from '~/themes'
-import { MAX_WIDTH } from '~/constants'
+import {
+  CONTAINER_HEIGHT,
+  MAX_HEIGHT,
+  MAX_WIDTH,
+  NAVIGATION_BAR_HEIGHT,
+} from '~/constants'
 import { NavigationBar } from '~/components/NavigationBar'
 import { AnimatePresence } from 'framer-motion'
 
@@ -33,35 +38,41 @@ export default function App() {
         <Links />
         <link rel="stylesheet" href="/styles/global.css" />
       </head>
-      <body>
+      <Center as="body" minH="100vh">
         <ChakraProvider theme={theme}>
           <DAppProvider config={{}}>
-            <Flex
-              direction="column"
+            <Grid
+              templateRows={`${NAVIGATION_BAR_HEIGHT}px ${CONTAINER_HEIGHT}px`}
               w={`${MAX_WIDTH - 2}px`}
-              align="center"
+              h="100vh"
               mx="auto"
-              border="1px"
-              borderTop="0"
-              borderStyle="solid"
-              borderColor="secondary.900"
-              minH="calc(100vh - 2px)"
+              maxH={`${MAX_HEIGHT}px`}
               position="relative"
               userSelect="none"
             >
               <NavigationBar />
               <AnimatePresence initial={false}>
-                <Box w="full" key={location.pathname.split('/')[0]}>
+                <Box
+                  w="full"
+                  h="full"
+                  maxH={`${CONTAINER_HEIGHT}px`}
+                  key={location.pathname.split('/')[0]}
+                  border="1px"
+                  borderTop="0"
+                  borderStyle="solid"
+                  borderColor="secondary.900"
+                  flex={1}
+                >
                   {outlet}
                 </Box>
               </AnimatePresence>
-            </Flex>
+            </Grid>
           </DAppProvider>
         </ChakraProvider>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
-      </body>
+      </Center>
     </html>
   )
 }

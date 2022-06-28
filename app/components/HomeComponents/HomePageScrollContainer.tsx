@@ -12,9 +12,6 @@ export const HomePageScrollContainer = React.forwardRef<
     w="full"
     h="320px"
     scrollBehavior="smooth"
-    borderBottom="1px"
-    borderStyle="solid"
-    borderColor="secondary.900"
     ref={ref}
     css={{
       '&::-webkit-scrollbar': {

@@ -1,1 +1,4 @@
 export const MAX_WIDTH = 1440
+export const MAX_HEIGHT = 1080
+export const NAVIGATION_BAR_HEIGHT = 68
+export const CONTAINER_HEIGHT = MAX_HEIGHT - NAVIGATION_BAR_HEIGHT

@@ -1,5 +1,5 @@
-import { Center } from '@chakra-ui/react'
+import { ScrollContainer } from '~/components/ScrollContainer'
 
 export default function Event() {
-  return <Center>event</Center>
+  return <ScrollContainer>event</ScrollContainer>
 }

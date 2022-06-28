@@ -3,7 +3,7 @@ import { Link, Box, Flex } from '@chakra-ui/react'
 import React from 'react'
 import { Link as RemixLink } from '@remix-run/react'
 import { motion } from 'framer-motion'
-import { NAVIGATION_BAR_HEIGHT } from '~/components/NavigationBar'
+import { NAVIGATION_BAR_HEIGHT } from '~/constants'
 
 export const CollapseBar: React.FC<LinkProps & { to?: string }> = ({
   children,
@@ -16,7 +16,6 @@ export const CollapseBar: React.FC<LinkProps & { to?: string }> = ({
       w="59px"
       minW="59px"
       h="full"
-      maxH={`calc(100vh - ${NAVIGATION_BAR_HEIGHT}px)`}
       bg="primary.100"
       borderRight="1px"
       borderStyle="solid"
