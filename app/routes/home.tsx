@@ -77,7 +77,7 @@ export default function Home() {
       exit={{ opacity: 0 }}
       w="full"
       h="full"
-      gridTemplateColumns="calc(50% - 1px) 50%"
+      gridTemplateColumns="calc(50% - 1px) 0px 50%"
       flex={1}
       position="relative"
     >
@@ -280,11 +280,12 @@ export default function Home() {
       </Flex>
       <Grid
         templateColumns="60px 60px"
-        position="absolute"
+        position="relative"
         top="1px"
-        left="50%"
+        left="1px"
         zIndex={2}
         h="calc(100% - 1px)"
+        maxH={`calc(100vh - ${NAVIGATION_BAR_HEIGHT}px)`}
         w="0"
         style={{
           opacity: isShowIndexSideBar && !isHome ? 1 : 0,

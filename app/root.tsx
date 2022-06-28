@@ -38,12 +38,12 @@ export default function App() {
         <Links />
         <link rel="stylesheet" href="/styles/global.css" />
       </head>
-      <Center as="body" minH="100vh">
+      <Center as="body" minW={`${MAX_WIDTH}px`} minH="100vh">
         <ChakraProvider theme={theme}>
           <DAppProvider config={{}}>
             <Grid
-              templateRows={`${NAVIGATION_BAR_HEIGHT}px ${CONTAINER_HEIGHT}px`}
-              w={`${MAX_WIDTH - 2}px`}
+              templateRows={`${NAVIGATION_BAR_HEIGHT}px calc(100% - ${NAVIGATION_BAR_HEIGHT}px)`}
+              w={`${MAX_WIDTH}px`}
               h="100vh"
               mx="auto"
               maxH={`${MAX_HEIGHT}px`}
