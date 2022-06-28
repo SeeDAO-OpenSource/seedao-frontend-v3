@@ -7,7 +7,7 @@ export const getNavButtonProps = (options?: {
 }) => {
   const colorScheme = options?.colorScheme || 'secondary'
   return {
-    fontWeight: 'semibold',
+    fontWeight: 'normal',
     color: `${colorScheme}.600`,
     _hover: {
       bg: 'none',
@@ -19,7 +19,9 @@ export const getNavButtonProps = (options?: {
       color: `${colorScheme}.900`,
       textDecoration: 'underline',
     },
-    ...(options?.active ? { color: `${colorScheme}.900` } : {}),
+    ...(options?.active
+      ? { color: `${colorScheme}.900`, fontWeight: 'semibold' }
+      : {}),
   }
 }
 

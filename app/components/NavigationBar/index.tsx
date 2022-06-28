@@ -18,21 +18,32 @@ import { getNavButtonProps } from '~/themes'
 import { Link as RemixLink, useLocation } from '@remix-run/react'
 import { NAVIGATION_BAR_HEIGHT } from '~/constants'
 
-const NavButton: React.FC<ButtonProps & { active?: boolean }> = ({
+const NavButton: React.FC<ButtonProps & { active?: boolean; to?: string }> = ({
   children,
   colorScheme = 'secondary',
   active,
+  to,
   ...props
-}) => (
-  <Button
-    variant="unstyled"
-    textTransform="uppercase"
-    {...getNavButtonProps({ colorScheme, active })}
-    {...props}
-  >
-    {children}
-  </Button>
-)
+}) => {
+  const button = (
+    <Button
+      variant="unstyled"
+      textTransform="uppercase"
+      {...getNavButtonProps({ colorScheme, active })}
+      {...props}
+    >
+      {children}
+    </Button>
+  )
+  if (to) {
+    return (
+      <Link as={RemixLink} to={to}>
+        {button}
+      </Link>
+    )
+  }
+  return button
+}
 
 const Side: React.FC = () => {
   const { account, activateBrowserWallet } = useEthers()
@@ -110,22 +121,24 @@ export const NavigationBar: React.FC = () => {
       <Image src="/assets/svg/logo.svg" w="144px" h="22px" mr="4px" />
       {splitLineEl}
       <HStack spacing="16px">
-        <Link as={RemixLink} to={RoutePath.Home}>
-          <NavButton
-            active={
-              pathnamePart1 === RoutePath.Home ||
-              location.pathname === RoutePath.Home
-            }
-          >
-            Home
-          </NavButton>
-        </Link>
+        <NavButton
+          active={
+            pathnamePart1 === RoutePath.Home ||
+            location.pathname === RoutePath.Home ||
+            location.pathname === RoutePath.HomeStart
+          }
+          to={RoutePath.Home}
+        >
+          Home
+        </NavButton>
         <Menu placement="bottom">
           <MenuButton
             {...getNavButtonProps({
               active:
                 pathnamePart1 === RoutePath.Event ||
-                location.pathname === RoutePath.Event,
+                location.pathname === RoutePath.Event ||
+                pathnamePart1 === RoutePath.Task ||
+                location.pathname === RoutePath.Task,
             })}
             textTransform="uppercase"
           >
@@ -137,21 +150,66 @@ export const NavigationBar: React.FC = () => {
                 EVENT
               </Link>
             </MenuItem>
-            <MenuItem>TASK</MenuItem>
+            <MenuItem>
+              <Link as={RemixLink} to={RoutePath.Task}>
+                TASK
+              </Link>
+            </MenuItem>
           </MenuList>
         </Menu>
-        <NavButton>Deschool</NavButton>
-        <NavButton>govern</NavButton>
+        <NavButton
+          active={
+            pathnamePart1 === RoutePath.Deschool ||
+            location.pathname === RoutePath.Deschool
+          }
+          to={RoutePath.Deschool}
+        >
+          Deschool
+        </NavButton>
+        <NavButton
+          active={
+            pathnamePart1 === RoutePath.Govern ||
+            location.pathname === RoutePath.Govern
+          }
+          to={RoutePath.Govern}
+        >
+          govern
+        </NavButton>
         <Menu placement="bottom">
-          <MenuButton {...getNavButtonProps()} textTransform="uppercase">
+          <MenuButton
+            {...getNavButtonProps({
+              active:
+                pathnamePart1 === RoutePath.Sgn ||
+                location.pathname === RoutePath.Sgn ||
+                pathnamePart1 === RoutePath.Poap ||
+                location.pathname === RoutePath.Poap,
+            })}
+            textTransform="uppercase"
+          >
             Mint
           </MenuButton>
           <MenuList>
-            <MenuItem>SGN</MenuItem>
-            <MenuItem>POAP</MenuItem>
+            <MenuItem>
+              <Link as={RemixLink} to={RoutePath.Sgn}>
+                SGN
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link as={RemixLink} to={RoutePath.Poap}>
+                POAP
+              </Link>
+            </MenuItem>
           </MenuList>
         </Menu>
-        <NavButton>Member</NavButton>
+        <NavButton
+          active={
+            pathnamePart1 === RoutePath.Member ||
+            location.pathname === RoutePath.Member
+          }
+          to={RoutePath.Member}
+        >
+          Member
+        </NavButton>
         {splitLineEl}
         <NavButton colorScheme="adorn">C-Combinator</NavButton>
         {splitLineEl}
