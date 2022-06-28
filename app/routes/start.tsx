@@ -16,6 +16,8 @@ import {
   WindowFooterLink,
 } from '~/components/StartPageComponents'
 import { ScrollContainer } from '~/components/ScrollContainer'
+import { useEffect, useState } from 'react'
+import { Fade } from '~/components/Fade'
 
 const sidebar = {
   open: () => ({
@@ -38,6 +40,13 @@ const sidebar = {
 }
 
 export default function Start() {
+  const [isLoaded, setIsLoaded] = useState(false)
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true)
+    }, 2000)
+  }, [])
+
   return (
     <ScrollContainer>
       <motion.div
@@ -92,6 +101,33 @@ export default function Start() {
           >
             欢迎加入SeeDAO！
           </Heading>
+          {!isLoaded ? (
+            <Image
+              src="/assets/png/start_model_poster.png"
+              w="771px"
+              h="693px"
+              position="absolute"
+              top="100px"
+              left="517px"
+              zIndex={-2}
+            />
+          ) : null}
+          <Fade
+            isOpen={isLoaded}
+            position="absolute"
+            top="100px"
+            left="517px"
+            zIndex={-2}
+            w="771px"
+            h="693px"
+          >
+            <Image
+              src="/assets/png/start_model_poster.png"
+              w="inherit"
+              h="inherit"
+              objectFit="contain"
+            />
+          </Fade>
           <Box
             as="iframe"
             w="771px"
@@ -101,6 +137,7 @@ export default function Start() {
             left="517px"
             src="/3d.html"
             zIndex={-2}
+            style={{ opacity: isLoaded ? 1 : 0 }}
           />
           <Box position="absolute" left="182px" top="787px" w="530px">
             <Heading as="h3" fontSize="60px" lineHeight="108px">
