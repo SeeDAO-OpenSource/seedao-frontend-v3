@@ -1,4 +1,4 @@
-import type { HeadingProps } from '@chakra-ui/react'
+import type { BoxProps, HeadingProps } from '@chakra-ui/react'
 import { Box, VStack, HStack, Heading, Text, Flex } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import React from 'react'
@@ -31,11 +31,9 @@ export const Indicator: React.FC<{
   </VStack>
 )
 
-export const HomeHeading: React.FC<HeadingProps & { sub: ReactNode }> = ({
-  children,
-  sub,
-  ...props
-}) => (
+export const HomeHeading: React.FC<
+  HeadingProps & { sub: ReactNode; subProps?: BoxProps }
+> = ({ children, sub, subProps, ...props }) => (
   <Heading as="h2" textTransform="uppercase" position="relative" {...props}>
     {children}
     <Box
@@ -46,6 +44,7 @@ export const HomeHeading: React.FC<HeadingProps & { sub: ReactNode }> = ({
       ml="8px"
       fontWeight="500"
       style={{ writingMode: 'inherit' }}
+      {...subProps}
     >
       {sub}
     </Box>
