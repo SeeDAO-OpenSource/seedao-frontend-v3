@@ -142,9 +142,9 @@ export default function Event() {
                     justify="space-between"
                     transition="200ms"
                     _hover={
-                      isSameSelectedDay
+                      !isSameSelectedDay
                         ? {
-                            bg: 'secondary.100',
+                            bg: 'secondary.100!important',
                           }
                         : {}
                     }
