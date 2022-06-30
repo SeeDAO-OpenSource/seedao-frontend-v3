@@ -20,6 +20,7 @@ import {
 } from '~/constants'
 import { NavigationBar } from '~/components/NavigationBar'
 import { AnimatePresence } from 'framer-motion'
+import { AnimationContainer } from '~/components/AnimationContainer'
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -51,21 +52,27 @@ export default function App() {
               userSelect="none"
             >
               <NavigationBar />
-              <AnimatePresence initial={false}>
-                <Box
-                  w="full"
-                  h="full"
-                  maxH={`${CONTAINER_HEIGHT}px`}
-                  key={location.pathname.split('/')[0]}
-                  border="1px"
-                  borderTop="0"
-                  borderStyle="solid"
-                  borderColor="secondary.900"
-                  flex={1}
-                >
-                  {outlet}
-                </Box>
-              </AnimatePresence>
+              <Box
+                w="full"
+                h="full"
+                maxH={`${CONTAINER_HEIGHT}px`}
+                flex={1}
+                position="relative"
+                style={{
+                  perspective: 800,
+                }}
+              >
+                <AnimatePresence initial={false}>
+                  <AnimationContainer
+                    key={location.pathname.split('/')[1]}
+                    animation={location.pathname.split('/')[1]}
+                    shadow="0 0 0 1px var(--chakra-colors-secondary-900)"
+                    bg="primary.100"
+                  >
+                    {outlet}
+                  </AnimationContainer>
+                </AnimatePresence>
+              </Box>
             </Grid>
           </DAppProvider>
         </ChakraProvider>

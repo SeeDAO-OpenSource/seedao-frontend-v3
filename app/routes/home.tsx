@@ -1,5 +1,4 @@
 import { useLocation } from '@remix-run/react'
-import { motion } from 'framer-motion'
 import {
   Box,
   Button,
@@ -71,10 +70,6 @@ export default function Home() {
 
   return (
     <Grid
-      as={motion.div}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
       w="full"
       h="full"
       gridTemplateColumns="calc(50% - 1px) 0px 50%"
