@@ -108,10 +108,6 @@ export const NavigationBar: React.FC = () => {
       h={`${NAVIGATION_BAR_HEIGHT}px`}
       align="center"
       px="20px"
-      // border="1px"
-      // borderBottom="1px"
-      // borderStyle="solid"
-      // borderColor="secondary.900"
       shadow="0px 0px 0px 1px var(--chakra-colors-secondary-900)"
       position="sticky"
       top="0"
@@ -147,12 +143,24 @@ export const NavigationBar: React.FC = () => {
           </MenuButton>
           <MenuList>
             <MenuItem>
-              <Link as={RemixLink} to={RoutePath.Event}>
+              <Link
+                as={RemixLink}
+                to={RoutePath.Event}
+                display="flex"
+                w="full"
+                h="full"
+              >
                 EVENT
               </Link>
             </MenuItem>
             <MenuItem>
-              <Link as={RemixLink} to={RoutePath.Task}>
+              <Link
+                as={RemixLink}
+                to={RoutePath.Task}
+                display="flex"
+                w="full"
+                h="full"
+              >
                 TASK
               </Link>
             </MenuItem>
@@ -191,12 +199,24 @@ export const NavigationBar: React.FC = () => {
           </MenuButton>
           <MenuList>
             <MenuItem>
-              <Link as={RemixLink} to={RoutePath.Sgn}>
+              <Link
+                as={RemixLink}
+                to={RoutePath.Sgn}
+                display="flex"
+                w="full"
+                h="full"
+              >
                 SGN
               </Link>
             </MenuItem>
             <MenuItem>
-              <Link as={RemixLink} to={RoutePath.Poap}>
+              <Link
+                as={RemixLink}
+                to={RoutePath.Poap}
+                display="flex"
+                w="full"
+                h="full"
+              >
                 POAP
               </Link>
             </MenuItem>
