@@ -182,7 +182,7 @@ export default function Event() {
                     </Box>
                     {m ? (
                       <MonthTag
-                        bg={offset === 0 ? 'adorn.900' : undefined}
+                        bg={offset === 0 ? 'adorn.900' : 'secondary.900'}
                         style={{
                           opacity: isSameSelectedDay ? 1 : opacity,
                           color: isSameSelectedDay
