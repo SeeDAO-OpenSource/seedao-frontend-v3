@@ -34,7 +34,7 @@ export default function Home() {
     <Grid
       w="full"
       h="full"
-      gridTemplateColumns="calc(50% - 1px) 50%"
+      gridTemplateColumns="50% calc(50% + 1px)"
       flex={1}
       position="relative"
     >
