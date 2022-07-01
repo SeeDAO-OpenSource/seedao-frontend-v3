@@ -17,6 +17,7 @@ import {
   MAX_HEIGHT,
   MAX_WIDTH,
   NAVIGATION_BAR_HEIGHT,
+  SHADOW_BORDER,
 } from '~/constants'
 import { NavigationBar } from '~/components/NavigationBar'
 import { AnimatePresence } from 'framer-motion'
@@ -66,7 +67,7 @@ export default function App() {
                   <AnimationContainer
                     key={location.pathname.split('/')[1]}
                     animation={location.pathname.split('/')[1]}
-                    shadow="0 0 0 1px var(--chakra-colors-secondary-900)"
+                    shadow={SHADOW_BORDER}
                     bg="primary.100"
                   >
                     {outlet}

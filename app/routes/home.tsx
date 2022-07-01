@@ -9,7 +9,7 @@ import {
   Link,
   Image,
 } from '@chakra-ui/react'
-import { useRef, useMemo, useState, useEffect } from 'react'
+import { useRef } from 'react'
 import BackgroundVideoPoster from '~/assets/png/seedao_index_poster.png'
 import BackgroundVideo from '~/assets/video/seedao_index.mp4'
 import { Link as RemixLink } from '@remix-run/react'
@@ -20,59 +20,21 @@ import HomeIndex from './home/index'
 import Roadmap from './home/roadmap'
 import About from './home/about'
 import { Fade } from '~/components/Fade'
-import { NAVIGATION_BAR_HEIGHT } from '~/constants'
+import { EVENT_COLLAPSE_BAR, NAVIGATION_BAR_HEIGHT } from '~/constants'
 import { ScrollContainer } from '~/components/ScrollContainer'
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
   const location = useLocation()
-  const pageOffsetX = useMemo(() => {
-    if (location.pathname === RoutePath.HomeRoadmap) {
-      return 'calc(calc(-100% / 3) - 1px)'
-    }
-    if (location.pathname === RoutePath.HomeAbout) {
-      return 'calc(calc(-100% / 3) * 2)'
-    }
-    return '0'
-  }, [location.pathname])
   const isHome = location.pathname === RoutePath.Home
   const isHomeRoadMap = location.pathname === RoutePath.HomeRoadmap
   const isHomeAbout = location.pathname === RoutePath.HomeAbout
-  const isShowIndexSideBarByPathname = isHomeRoadMap || isHomeAbout
-  const [isShowIndexSideBar, setIsShowIndexSideBar] = useState(
-    isShowIndexSideBarByPathname
-  )
-  const [isShowRoadmapSideBar, setIsShowRoadmapSideBar] = useState(isHomeAbout)
-
-  const transition = 400
-  useEffect(() => {
-    if (isHomeAbout) {
-      const timer = setTimeout(() => setIsShowRoadmapSideBar(true), transition)
-      return () => clearTimeout(timer)
-    } else {
-      setIsShowRoadmapSideBar(false)
-    }
-  }, [isHomeAbout])
-
-  useEffect(() => {
-    if (isShowIndexSideBarByPathname) {
-      const timer = setTimeout(() => setIsShowIndexSideBar(true), transition)
-      return () => clearTimeout(timer)
-    } else {
-      setIsShowIndexSideBar(false)
-    }
-  }, [isShowIndexSideBarByPathname])
-
-  useEffect(() => {
-    scrollContainerRef.current?.scroll(0, 0)
-  }, [location.pathname])
 
   return (
     <Grid
       w="full"
       h="full"
-      gridTemplateColumns="calc(50% - 1px) 0px 50%"
+      gridTemplateColumns="calc(50% - 1px) 50%"
       flex={1}
       position="relative"
     >
@@ -82,6 +44,7 @@ export default function Home() {
         direction="column"
         maxH={`calc(100vh - ${NAVIGATION_BAR_HEIGHT}px)`}
         mb="-1px"
+        borderRight="1px"
         borderBottom="1px"
         borderStyle="solid"
         borderColor="secondary.900"
@@ -273,114 +236,64 @@ export default function Home() {
           </Flex>
         </Flex>
       </Flex>
-      <Grid
-        templateColumns="60px 60px"
-        position="relative"
-        top="1px"
-        left="1px"
-        zIndex={2}
-        h="calc(100% - 1px)"
-        maxH={`calc(100vh - ${NAVIGATION_BAR_HEIGHT}px)`}
-        w="0"
-        style={{
-          opacity: isShowIndexSideBar && !isHome ? 1 : 0,
-          pointerEvents: isShowIndexSideBar && !isHome ? 'unset' : 'none',
-        }}
-      >
-        <CollapseBar
-          position="sticky"
-          top={`${NAVIGATION_BAR_HEIGHT}px`}
-          to={RoutePath.Home}
-          transition="0ms"
+      <Box position="relative" w="full" h="full" overflow="hidden">
+        <ScrollContainer
+          transition="300ms"
           style={{
-            opacity: isShowIndexSideBar && !isHome ? 1 : 0,
-            pointerEvents: isShowIndexSideBar && !isHome ? 'unset' : 'none',
-          }}
-        >
-          <HomeHeading sub="主页">Index</HomeHeading>
-        </CollapseBar>
-        <CollapseBar
-          position="sticky"
-          top={`${NAVIGATION_BAR_HEIGHT}px`}
-          left="60px"
-          to={RoutePath.HomeRoadmap}
-          transition="0ms"
-          style={{
-            opacity: isShowRoadmapSideBar && !isHome ? 1 : 0,
-            pointerEvents: isShowRoadmapSideBar && !isHome ? 'unset' : 'none',
-          }}
-        >
-          <HomeHeading sub="路线图">Roadmap</HomeHeading>
-        </CollapseBar>
-      </Grid>
-      <ScrollContainer
-        ref={scrollContainerRef}
-        borderLeft="1px"
-        borderStyle="solid"
-        borderColor="secondary.900"
-        position="relative"
-        overflowX="hidden"
-        overflowY="scroll"
-      >
-        <Grid
-          templateRows="100%"
-          templateColumns="repeat(3, calc(100% / 3))"
-          w="300%"
-          transition={`${transition}ms`}
-          position="relative"
-          h="full"
-          style={{
-            transform: `translateX(${pageOffsetX})`,
+            transform:
+              isHomeRoadMap || isHomeAbout ? `translateX(-50%)` : undefined,
           }}
         >
           <Fade isOpen={isHome}>
             <HomeIndex />
           </Fade>
-          <Grid
-            h="full"
-            templateRows="100%"
-            templateColumns="60px calc(100% - 60px)"
-            position="relative"
-          >
-            <CollapseBar
-              to={RoutePath.Home}
-              position="relative"
-              top="1px"
-              style={{ opacity: isHomeRoadMap ? 1 : 0 }}
-            >
-              <HomeHeading sub="主页">Index</HomeHeading>
-            </CollapseBar>
-            <Fade isOpen={isHomeRoadMap}>
+        </ScrollContainer>
+        <Grid
+          w="full"
+          h="full"
+          templateRows="100%"
+          templateColumns="60px calc(100% - 60px)"
+          position="absolute"
+          left="100%"
+          top="0"
+          transition="300ms"
+          style={{
+            transform:
+              isHomeRoadMap || isHomeAbout ? `translateX(-100%)` : undefined,
+          }}
+        >
+          <CollapseBar to={RoutePath.Home} position="relative" top="1px">
+            <HomeHeading sub="主页">Index</HomeHeading>
+          </CollapseBar>
+          <Fade isOpen={isHomeRoadMap}>
+            <ScrollContainer>
               <Roadmap />
-            </Fade>
-          </Grid>
-          <Grid
-            h="full"
-            templateColumns="60px 60px calc(100% - 60px - 60px)"
-            position="relative"
-          >
-            <CollapseBar
-              to={RoutePath.Home}
-              position="relative"
-              top="1px"
-              transition="0ms"
-              style={{ opacity: isShowIndexSideBar ? 0 : 1 }}
-            >
-              <HomeHeading sub="主页">Index</HomeHeading>
-            </CollapseBar>
-            <CollapseBar
-              to={RoutePath.HomeRoadmap}
-              position="relative"
-              top="1px"
-            >
-              <HomeHeading sub="路线图">Roadmap</HomeHeading>
-            </CollapseBar>
-            <Fade isOpen={isHomeAbout}>
-              <About />
-            </Fade>
-          </Grid>
+            </ScrollContainer>
+          </Fade>
         </Grid>
-      </ScrollContainer>
+        <Grid
+          w={`calc(100% - ${EVENT_COLLAPSE_BAR}px)`}
+          h="full"
+          templateRows="100%"
+          templateColumns="60px calc(100% - 60px)"
+          position="absolute"
+          left="calc(100% + 1px)"
+          top="0"
+          transition="300ms"
+          style={{
+            transform: isHomeAbout ? `translateX(-100%)` : undefined,
+          }}
+        >
+          <CollapseBar to={RoutePath.HomeRoadmap} position="relative" top="1px">
+            <HomeHeading sub="路线图">Roadmap</HomeHeading>
+          </CollapseBar>
+          <Fade isOpen={isHomeAbout}>
+            <ScrollContainer>
+              <About />
+            </ScrollContainer>
+          </Fade>
+        </Grid>
+      </Box>
     </Grid>
   )
 }

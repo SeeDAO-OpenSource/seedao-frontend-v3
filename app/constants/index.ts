@@ -5,4 +5,5 @@ export const CONTAINER_HEIGHT = MAX_HEIGHT - NAVIGATION_BAR_HEIGHT
 export const EVENT_SEARCH_BAR_HEIGHT = 68
 export const EVENT_TITLE_WIDTH = 280
 export const EVENT_FILTER_WIDTH = 500
-export const EVENT_COLLAPSE_BAR = 59
+export const EVENT_COLLAPSE_BAR = 60
+export const SHADOW_BORDER = '0 0 0 1px var(--chakra-colors-secondary-900)'

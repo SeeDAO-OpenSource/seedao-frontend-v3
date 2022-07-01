@@ -76,7 +76,7 @@ export default function Task() {
       <Box w="full" h="full" position="relative" overflow="hidden">
         <Grid
           w={`calc(100% - ${EVENT_FILTER_WIDTH}px)`}
-          templateColumns="59px calc(100% - 59px)"
+          templateColumns={`${EVENT_COLLAPSE_BAR}px calc(100% - ${EVENT_COLLAPSE_BAR}px)`}
           templateRows="100%"
           h="full"
           position="absolute"
