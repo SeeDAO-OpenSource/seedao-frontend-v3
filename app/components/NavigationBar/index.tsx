@@ -100,7 +100,7 @@ const Side: React.FC = () => {
 export const NavigationBar: React.FC = () => {
   const location = useLocation()
   const splitLineEl = <Box bg="secondary.900" h="14px" w="2px" mx="16px" />
-  const pathnamePart1 = location.pathname.split('/')[0]
+  const pathnamePart1 = location.pathname.split('/')[1]
 
   return (
     <Flex
@@ -120,8 +120,9 @@ export const NavigationBar: React.FC = () => {
       <HStack spacing="16px">
         <NavButton
           active={
-            pathnamePart1 === RoutePath.Home ||
             location.pathname === RoutePath.Home ||
+            location.pathname === RoutePath.HomeRoadmap ||
+            location.pathname === RoutePath.HomeAbout ||
             location.pathname === RoutePath.HomeStart
           }
           to={RoutePath.Home}
@@ -132,10 +133,11 @@ export const NavigationBar: React.FC = () => {
           <MenuButton
             {...getNavButtonProps({
               active:
-                pathnamePart1 === RoutePath.Event ||
                 location.pathname === RoutePath.Event ||
-                pathnamePart1 === RoutePath.Task ||
-                location.pathname === RoutePath.Task,
+                location.pathname === RoutePath.Task ||
+                location.pathname === RoutePath.TaskDone ||
+                location.pathname === RoutePath.TaskOnProgress ||
+                location.pathname === RoutePath.TaskTodo,
             })}
             textTransform="uppercase"
           >
@@ -156,7 +158,7 @@ export const NavigationBar: React.FC = () => {
             <MenuItem>
               <Link
                 as={RemixLink}
-                to={RoutePath.Task}
+                to={RoutePath.TaskTodo}
                 display="flex"
                 w="full"
                 h="full"

@@ -22,8 +22,8 @@ const ThreeDAnimation = {
     opacity: 0,
     scale: 0.75,
     zIndex: -1,
-    rotateX: '30deg',
-    rotateY: '-30deg',
+    rotateX: '0deg',
+    rotateY: '0deg',
   },
 }
 

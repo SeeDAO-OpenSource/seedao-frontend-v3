@@ -3,7 +3,7 @@ import { Link, Box, Flex } from '@chakra-ui/react'
 import React from 'react'
 import { Link as RemixLink } from '@remix-run/react'
 import { motion } from 'framer-motion'
-import { NAVIGATION_BAR_HEIGHT } from '~/constants'
+import { EVENT_COLLAPSE_BAR, NAVIGATION_BAR_HEIGHT } from '~/constants'
 
 export const CollapseBar: React.FC<LinkProps & { to?: string }> = ({
   children,
@@ -13,8 +13,8 @@ export const CollapseBar: React.FC<LinkProps & { to?: string }> = ({
     <Link
       as={RemixLink}
       display="block"
-      w="59px"
-      minW="59px"
+      w={`${EVENT_COLLAPSE_BAR}px`}
+      minW={`${EVENT_COLLAPSE_BAR}px`}
       h="full"
       bg="primary.100"
       borderRight="1px"
@@ -30,7 +30,7 @@ export const CollapseBar: React.FC<LinkProps & { to?: string }> = ({
         as={motion.div}
         alignItems="center"
         w={`calc(100vh - ${NAVIGATION_BAR_HEIGHT}px)`}
-        h="59px"
+        h={`${EVENT_COLLAPSE_BAR}px`}
         pl="27px"
         transform="rotate(90deg) translateY(-100%)"
         transformOrigin="left top"

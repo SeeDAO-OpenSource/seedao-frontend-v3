@@ -22,7 +22,6 @@ export const Background: React.FC<CenterProps> = ({ ...props }) => {
         bg="linear-gradient(90deg, var(--chakra-colors-secondary-200) 1px, transparent 0)"
         bgSize="153px 100%"
         maxW={`${MAX_WIDTH}px`}
-        borderRight="1px solid var(--chakra-colors-secondary-200)"
       />
     </Center>
   )

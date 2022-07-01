@@ -5,7 +5,11 @@ export enum RoutePath {
   HomeStart = '/start',
 
   Event = '/event',
-  Task = '/tasks',
+
+  Task = '/task',
+  TaskTodo = '/task/todo',
+  TaskOnProgress = '/task/on_progress',
+  TaskDone = '/task/done',
 
   Deschool = '/deschool',
 

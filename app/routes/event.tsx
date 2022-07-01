@@ -13,12 +13,16 @@ import {
 } from '~/components/EventComponents'
 import { HomeHeading } from '~/components/HomeComponents'
 import { useMemo, useState } from 'react'
-import { CONTAINER_HEIGHT } from '~/constants'
+import {
+  CONTAINER_HEIGHT,
+  EVENT_TITLE_WIDTH,
+  EVENT_SEARCH_BAR_HEIGHT,
+} from '~/constants'
 import { RoutePath } from '~/constants/RoutePath'
 import { Filter } from '~/components/Filter'
 
-const list = new Array(500).fill(0)
-const baseLineIndex = Math.floor(list.length / 2)
+const totalCount = 500
+const baseLineIndex = Math.floor(totalCount / 2)
 
 const exampleScheduleItem = {
   time: '20:00 – 21:00',
@@ -66,14 +70,14 @@ export default function Event() {
   return (
     <Grid templateColumns="938px calc(100% - 938px)" h="full">
       <Grid
-        templateRows="68px calc(100% - 68px)"
+        templateRows={`${EVENT_SEARCH_BAR_HEIGHT}px calc(100% - ${EVENT_SEARCH_BAR_HEIGHT}px)`}
         borderRight="1px"
         borderStyle="solid"
         borderColor="secondary.900"
         h="full"
       >
         <Grid
-          templateColumns="280px calc(100% - 280px)"
+          templateColumns={`${EVENT_TITLE_WIDTH}px calc(100% - ${EVENT_TITLE_WIDTH}px)`}
           borderBottom="1px"
           borderStyle="solid"
           borderColor="secondary.900"
@@ -81,7 +85,7 @@ export default function Event() {
           <Flex
             align="center"
             bg="adorn.900"
-            h="68px"
+            h={`${EVENT_SEARCH_BAR_HEIGHT - 1}px`}
             px="20px"
             borderRight="1px"
             borderStyle="solid"
@@ -103,7 +107,7 @@ export default function Event() {
           as={Virtuoso}
           w="full"
           h="full"
-          data={list}
+          totalCount={totalCount}
           initialTopMostItemIndex={baseLineIndex}
           fixedItemHeight={160}
           overscan={160 * 7}
@@ -178,10 +182,13 @@ export default function Event() {
                     </Box>
                     {m ? (
                       <MonthTag
+                        bg={offset === 0 ? 'adorn.900' : undefined}
                         style={{
                           opacity: isSameSelectedDay ? 1 : opacity,
                           color: isSameSelectedDay
-                            ? 'var(--chakra-colors-secondary-900)'
+                            ? offset === 0
+                              ? 'var(--chakra-colors-adorn-900)'
+                              : 'var(--chakra-colors-secondary-900)'
                             : undefined,
                           backgroundColor: isSameSelectedDay
                             ? 'var(--chakra-colors-primary-100)'
@@ -209,7 +216,7 @@ export default function Event() {
         />
       </Grid>
       <Grid
-        templateRows="68px calc(100% - 68px)"
+        templateRows={`${EVENT_SEARCH_BAR_HEIGHT}px calc(100% - ${EVENT_SEARCH_BAR_HEIGHT}px)`}
         h="full"
         maxH={`${CONTAINER_HEIGHT - 1}px`}
       >
