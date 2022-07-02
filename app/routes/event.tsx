@@ -17,6 +17,7 @@ import {
   CONTAINER_HEIGHT,
   EVENT_TITLE_WIDTH,
   EVENT_SEARCH_BAR_HEIGHT,
+  EVENT_FILTER_WIDTH,
 } from '~/constants'
 import { RoutePath } from '~/constants/RoutePath'
 import { Filter } from '~/components/Filter'
@@ -68,7 +69,10 @@ export default function Event() {
   )
 
   return (
-    <Grid templateColumns="938px calc(100% - 938px)" h="full">
+    <Grid
+      templateColumns={`calc(100% - ${EVENT_FILTER_WIDTH}px - 2px) calc(${EVENT_FILTER_WIDTH}px - 2px)`}
+      h="full"
+    >
       <Grid
         templateRows={`${EVENT_SEARCH_BAR_HEIGHT}px calc(100% - ${EVENT_SEARCH_BAR_HEIGHT}px)`}
         borderRight="1px"

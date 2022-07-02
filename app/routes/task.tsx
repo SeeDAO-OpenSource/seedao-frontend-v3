@@ -1,8 +1,8 @@
 import {
-  EVENT_FILTER_WIDTH,
+  TASK_FILTER_WIDTH,
   EVENT_TITLE_WIDTH,
   EVENT_SEARCH_BAR_HEIGHT,
-  EVENT_COLLAPSE_BAR,
+  COLLAPSE_BAR_WIDTH,
 } from '~/constants'
 import { Flex, Grid, Image, Box } from '@chakra-ui/react'
 import { HomeHeading } from '~/components/HomeComponents'
@@ -15,16 +15,6 @@ import OnProgress from './task/on_progress'
 import Done from './task/done'
 import { useLocation } from '@remix-run/react'
 import { Fade } from '~/components/Fade'
-import type { LoaderFunction } from '@remix-run/node'
-import { redirect } from '@remix-run/node'
-
-export const loader: LoaderFunction = async ({ request }) => {
-  // eslint-disable-next-line compat/compat
-  if (new URL(request.url).pathname === RoutePath.Task) {
-    throw redirect(RoutePath.TaskTodo)
-  }
-  return true
-}
 
 export default function Task() {
   const location = useLocation()
@@ -42,7 +32,7 @@ export default function Task() {
       h="full"
     >
       <Grid
-        templateColumns={`${EVENT_TITLE_WIDTH}px calc(100% - ${EVENT_TITLE_WIDTH}px - ${EVENT_FILTER_WIDTH}px) ${EVENT_FILTER_WIDTH}px`}
+        templateColumns={`${EVENT_TITLE_WIDTH}px calc(100% - ${EVENT_TITLE_WIDTH}px - ${TASK_FILTER_WIDTH}px) ${TASK_FILTER_WIDTH}px`}
         borderBottom="1px"
         borderStyle="solid"
         borderColor="secondary.900"
@@ -75,8 +65,8 @@ export default function Task() {
       </Grid>
       <Box w="full" h="full" position="relative" overflow="hidden">
         <Grid
-          w={`calc(100% - ${EVENT_FILTER_WIDTH}px)`}
-          templateColumns={`${EVENT_COLLAPSE_BAR}px calc(100% - ${EVENT_COLLAPSE_BAR}px)`}
+          w={`calc(100% - ${TASK_FILTER_WIDTH}px)`}
+          templateColumns={`${COLLAPSE_BAR_WIDTH}px calc(100% - ${COLLAPSE_BAR_WIDTH}px)`}
           templateRows="100%"
           h="full"
           position="absolute"
@@ -93,9 +83,9 @@ export default function Task() {
           </Fade>
         </Grid>
         <Grid
-          w={`calc(100% - ${EVENT_COLLAPSE_BAR * 2 - 3}px)`}
+          w={`calc(100% - ${COLLAPSE_BAR_WIDTH * 2 - 5}px)`}
           templateRows="100%"
-          templateColumns={`${EVENT_COLLAPSE_BAR}px calc(100% - ${EVENT_COLLAPSE_BAR}px)`}
+          templateColumns={`${COLLAPSE_BAR_WIDTH}px calc(100% - ${COLLAPSE_BAR_WIDTH}px)`}
           h="full"
           borderLeft="1px"
           borderRight="1px"
@@ -103,14 +93,14 @@ export default function Task() {
           borderColor="secondary.900"
           position="absolute"
           top="0"
-          left={`calc(100% - ${EVENT_FILTER_WIDTH}px - 1px)`}
+          left={`calc(100% - ${TASK_FILTER_WIDTH}px - 1px)`}
           bg="primary.100"
           transition="300ms"
           style={{
             transform:
               isOnProgressPage || isDonePage
                 ? `translateX(calc(-100% + ${
-                    EVENT_FILTER_WIDTH - EVENT_COLLAPSE_BAR + 3
+                    TASK_FILTER_WIDTH - COLLAPSE_BAR_WIDTH + 6
                   }px))`
                 : undefined,
           }}
@@ -125,9 +115,9 @@ export default function Task() {
           </Fade>
         </Grid>
         <Grid
-          w={`calc(100% - ${EVENT_COLLAPSE_BAR * 2 - 3}px)`}
+          w={`calc(100% - ${COLLAPSE_BAR_WIDTH * 2}px)`}
           templateRows="100%"
-          templateColumns={`${EVENT_COLLAPSE_BAR}px calc(100% - ${EVENT_COLLAPSE_BAR}px)`}
+          templateColumns={`${COLLAPSE_BAR_WIDTH}px calc(100% - ${COLLAPSE_BAR_WIDTH}px)`}
           h="full"
           borderLeft="1px"
           borderRight="1px"
@@ -135,12 +125,12 @@ export default function Task() {
           borderColor="secondary.900"
           position="absolute"
           top="0"
-          right={`calc(-100% + ${EVENT_COLLAPSE_BAR * 3 - 4}px)`}
+          right={`calc(-100% + ${COLLAPSE_BAR_WIDTH * 3 - 4}px)`}
           bg="primary.100"
           transition="300ms"
           style={{
             transform: isDonePage
-              ? `translateX(calc(-100% + ${EVENT_COLLAPSE_BAR + 1}px))`
+              ? `translateX(calc(-100% + ${COLLAPSE_BAR_WIDTH - 3}px))`
               : undefined,
           }}
         >

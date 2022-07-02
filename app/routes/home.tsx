@@ -20,7 +20,7 @@ import HomeIndex from './home/index'
 import Roadmap from './home/roadmap'
 import About from './home/about'
 import { Fade } from '~/components/Fade'
-import { EVENT_COLLAPSE_BAR, NAVIGATION_BAR_HEIGHT } from '~/constants'
+import { COLLAPSE_BAR_WIDTH, NAVIGATION_BAR_HEIGHT } from '~/constants'
 import { ScrollContainer } from '~/components/ScrollContainer'
 
 export default function Home() {
@@ -272,7 +272,7 @@ export default function Home() {
           </Fade>
         </Grid>
         <Grid
-          w={`calc(100% - ${EVENT_COLLAPSE_BAR}px)`}
+          w={`calc(100% - ${COLLAPSE_BAR_WIDTH}px)`}
           h="full"
           templateRows="100%"
           templateColumns="60px calc(100% - 60px)"
