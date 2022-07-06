@@ -70,7 +70,7 @@ export default function Event() {
 
   return (
     <Grid
-      templateColumns={`calc(100% - ${EVENT_FILTER_WIDTH}px - 2px) calc(${EVENT_FILTER_WIDTH}px - 2px)`}
+      templateColumns={`calc(100% - ${EVENT_FILTER_WIDTH}px) ${EVENT_FILTER_WIDTH}px`}
       h="full"
     >
       <Grid

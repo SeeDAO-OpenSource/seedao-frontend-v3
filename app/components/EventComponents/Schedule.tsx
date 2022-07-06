@@ -13,7 +13,7 @@ import {
 import { ScrollContainer } from '~/components/ScrollContainer'
 import dayjs from 'dayjs'
 import { MONTH_ABBREVIATES } from '~/components/EventComponents/MonthTag'
-import { AnimatePresence, motion } from 'framer-motion'
+import { GradientAnimationBackground } from '../GradientAnimationBackground'
 
 export interface ScheduleProps {
   day: dayjs.Dayjs
@@ -40,23 +40,6 @@ export const WEEK_SET = [
 export const Schedule: React.FC<ScheduleProps> = ({ day, items = [] }) => {
   const today = useMemo(() => dayjs(), [])
   const isToady = useMemo(() => today.isSame(day, 'date'), [day, today])
-  const isAfter = useMemo(() => today.isAfter(day, 'date'), [day, today])
-  const isBefore = useMemo(() => today.isBefore(day, 'date'), [day, today])
-
-  const backgroundImages = [
-    {
-      src: '/assets/png/event_backgrounds/after.png',
-      show: isAfter,
-    },
-    {
-      src: '/assets/png/event_backgrounds/before.png',
-      show: isBefore,
-    },
-    {
-      src: '/assets/png/event_backgrounds/today.png',
-      show: isToady,
-    },
-  ]
 
   return (
     <ScrollContainer position="relative" pb="30px">
@@ -67,34 +50,12 @@ export const Schedule: React.FC<ScheduleProps> = ({ day, items = [] }) => {
         pt="32px"
         px="30px"
       >
-        <AnimatePresence>
-          {backgroundImages.map((image) =>
-            image.show ? (
-              <Box
-                as={motion.div}
-                key={image.src}
-                w="full"
-                h="full"
-                position="absolute"
-                top="0"
-                left="0"
-                zIndex={-1}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <Image
-                  src={image.src}
-                  position="sticky"
-                  top="0"
-                  w="full"
-                  h="auto"
-                  pointerEvents="none"
-                />
-              </Box>
-            ) : null
-          )}
-        </AnimatePresence>
+        <GradientAnimationBackground
+          position="absolute"
+          top="0"
+          left="0"
+          zIndex={-1}
+        />
         <Box
           fontSize="110px"
           lineHeight="110px"
