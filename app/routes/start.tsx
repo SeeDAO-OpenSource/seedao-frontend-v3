@@ -9,12 +9,12 @@ import {
   Flex,
 } from '@chakra-ui/react'
 import {
-  Background,
   Window,
   WindowHeader,
   WindowFooterLink,
 } from '~/components/StartPageComponents'
 import { ScrollContainer } from '~/components/ScrollContainer'
+import { StripeBackground } from '~/components/StripeBackground'
 
 export default function Start() {
   const noShowModel = true
@@ -194,11 +194,11 @@ export default function Start() {
               </Heading>
               <HStack mt="18px" spacing="20px" fontSize="16px">
                 <Flex align="center">
-                  <Box bg="online" w="6px" h="6px" mr="7px" rounded="10px" />
+                  <Box bg="pass.100" w="6px" h="6px" mr="7px" rounded="10px" />
                   1,597 Online
                 </Flex>
                 <Flex align="center">
-                  <Box bg="online" w="6px" h="6px" mr="7px" rounded="10px" />
+                  <Box bg="pass.100" w="6px" h="6px" mr="7px" rounded="10px" />
                   85,81 Members
                 </Flex>
               </HStack>
@@ -273,7 +273,7 @@ export default function Start() {
           </Text>
         </Box>
       </Box>
-      <Background />
+      <StripeBackground />
     </ScrollContainer>
   )
 }

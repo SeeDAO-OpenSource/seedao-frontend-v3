@@ -11,7 +11,7 @@ import {
   Search,
   Schedule,
 } from '~/components/EventComponents'
-import { HomeHeading } from '~/components/HomeComponents'
+import { HeadingWithSub } from '~/components/HeadingWithSub'
 import { useMemo, useState } from 'react'
 import {
   CONTAINER_HEIGHT,
@@ -96,14 +96,14 @@ export default function Event() {
             borderColor="secondary.900"
           >
             <Image src="/assets/png/event.png" w="40px" h="40px" />
-            <HomeHeading
+            <HeadingWithSub
               color="primary.100"
               sub="活动"
               ml="8px"
               subProps={{ fontWeight: 'semibold' }}
             >
               EVENT
-            </HomeHeading>
+            </HeadingWithSub>
           </Flex>
           <Search />
         </Grid>

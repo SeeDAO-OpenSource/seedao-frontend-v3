@@ -58,11 +58,33 @@ const StartAnimation = {
   },
 }
 
+const SgnAnimation = {
+  initial: {
+    y: '50%',
+    opacity: 0,
+    zIndex: 0,
+    transition: {
+      type: 'tween',
+    },
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'tween',
+    },
+  },
+  exit: {
+    opacity: 0,
+  },
+}
+
 const animationMap: {
   [key: string]: typeof StartAnimation | typeof OpacityAnimation
 } = {
   start: StartAnimation,
   home: OpacityAnimation,
+  sgn: SgnAnimation,
 }
 
 export const AnimationContainer: React.FC<

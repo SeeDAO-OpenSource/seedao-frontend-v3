@@ -13,7 +13,8 @@ import { useRef } from 'react'
 import BackgroundVideoPoster from '~/assets/png/seedao_index_poster.png'
 import BackgroundVideo from '~/assets/video/seedao_index.mp4'
 import { Link as RemixLink } from '@remix-run/react'
-import { HomeHeading, Indicator } from '~/components/HomeComponents'
+import { Indicator } from '~/components/HomeComponents'
+import { HeadingWithSub } from '~/components/HeadingWithSub'
 import { CollapseBar } from '~/components/CollapseBar'
 import { RoutePath } from '~/constants/RoutePath'
 import HomeIndex from './home/index'
@@ -263,7 +264,7 @@ export default function Home() {
           }}
         >
           <CollapseBar to={RoutePath.Home} position="relative" top="1px">
-            <HomeHeading sub="主页">Index</HomeHeading>
+            <HeadingWithSub sub="主页">Index</HeadingWithSub>
           </CollapseBar>
           <Fade isOpen={isHomeRoadMap}>
             <ScrollContainer>
@@ -285,7 +286,7 @@ export default function Home() {
           }}
         >
           <CollapseBar to={RoutePath.HomeRoadmap} position="relative" top="1px">
-            <HomeHeading sub="路线图">Roadmap</HomeHeading>
+            <HeadingWithSub sub="路线图">Roadmap</HeadingWithSub>
           </CollapseBar>
           <Fade isOpen={isHomeAbout}>
             <ScrollContainer>

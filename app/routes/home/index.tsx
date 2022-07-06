@@ -10,7 +10,6 @@ import {
 import React from 'react'
 import {
   HOME_PAGE_SCROLL_ITEM_WIDTH,
-  HomeHeading,
   HomePageScrollContainer,
   HomePageScrollItem,
   PADDING_X,
@@ -19,6 +18,7 @@ import {
   ScrollButtons,
   SerialNumberContainer,
 } from '~/components/HomeComponents'
+import { HeadingWithSub } from '~/components/HeadingWithSub'
 import { useScrollButtons } from '~/hooks/useScrollButtons'
 
 const WelCome = () => (
@@ -33,9 +33,9 @@ const WelCome = () => (
     pb="40px"
     px={`${PADDING_X}px`}
   >
-    <HomeHeading sub="欢迎加入SEEDAO" mb="22px">
+    <HeadingWithSub sub="欢迎加入SEEDAO" mb="22px">
       WELCOME
-    </HomeHeading>
+    </HeadingWithSub>
     <Flex>
       <Text fontSize="16px" lineHeight="27px" fontWeight="400">
         元宇宙在呼唤创作者，一场前所未有的组织形态变革也在呼唤创作者。SeeDAO正是因此而设。我们的愿景是帮助一切想要从Web2.0世界来到Web3.0的创作者，成为你们可信的桥梁和助手。或许你们正在为不会调用Web3.0的工具而困惑，为不知如何启动社区而苦恼，为不知如何同其他社区协同而焦虑。SeeDAO正是为你们而设。
@@ -75,9 +75,9 @@ const Events = () => {
         borderColor="secondary.900"
         align="center"
       >
-        <HomeHeading sub="活动" mr="8px">
+        <HeadingWithSub sub="活动" mr="8px">
           EVENTS
-        </HomeHeading>
+        </HeadingWithSub>
         <ScrollButtons
           leftButtonProps={{
             disabled: isLeftmost,
@@ -125,9 +125,9 @@ const News = () => {
         borderColor="secondary.900"
         align="center"
       >
-        <HomeHeading sub="资讯" mr="8px">
+        <HeadingWithSub sub="资讯" mr="8px">
           NEWS
-        </HomeHeading>
+        </HeadingWithSub>
         <ScrollButtons
           leftButtonProps={{
             disabled: isLeftmost,
@@ -166,7 +166,7 @@ const Guilds = () => (
       borderStyle="solid"
       borderColor="secondary.900"
     >
-      <HomeHeading sub="公会">GUILDS</HomeHeading>
+      <HeadingWithSub sub="公会">GUILDS</HeadingWithSub>
     </Box>
     <Grid
       templateColumns="repeat(4, 25%)"

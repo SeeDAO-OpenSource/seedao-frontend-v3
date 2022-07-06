@@ -1,5 +1,6 @@
 import { Box, Heading, Flex, Image, Text } from '@chakra-ui/react'
-import { HomeHeading, PADDING_X, PADDING_Y } from '~/components/HomeComponents'
+import { HeadingWithSub } from '~/components/HeadingWithSub'
+import { PADDING_X, PADDING_Y } from '~/components/HomeComponents'
 
 const text =
   `从CryptoC诞生的那一刻起，探索基于Web3.0的内容生产关系就是我们的使命。经过2021年的反复实践，我们终于决定发起成立一个真正的DAO，来实现这件事。这个DAO就是SeeDAO。
@@ -51,7 +52,7 @@ export default function About() {
   return (
     <Flex w="full" h="full" py={`${PADDING_Y}px`} px={`${PADDING_X}px`}>
       <Box>
-        <HomeHeading sub="关于">About</HomeHeading>
+        <HeadingWithSub sub="关于">About</HeadingWithSub>
 
         <Heading as="h3" fontSize="28px" mt="22px" mb="38px">
           SeeDAO—— <br />

@@ -5,7 +5,7 @@ import {
   COLLAPSE_BAR_WIDTH,
 } from '~/constants'
 import { Flex, Grid, Image, Box } from '@chakra-ui/react'
-import { HomeHeading } from '~/components/HomeComponents'
+import { HeadingWithSub } from '~/components/HeadingWithSub'
 import { Search } from '~/components/EventComponents'
 import { Filter } from '~/components/Filter'
 import { CollapseBar } from '~/components/CollapseBar'
@@ -47,14 +47,14 @@ export default function Task() {
           borderColor="secondary.900"
         >
           <Image src="/assets/png/task.png" w="40px" h="40px" />
-          <HomeHeading
+          <HeadingWithSub
             color="primary.100"
             sub="任务"
             ml="8px"
             subProps={{ fontWeight: 'semibold' }}
           >
             Task
-          </HomeHeading>
+          </HeadingWithSub>
         </Flex>
         <Search
           borderRight="1px"
@@ -76,7 +76,7 @@ export default function Task() {
           transition="300ms"
         >
           <CollapseBar to={RoutePath.TaskTodo}>
-            <HomeHeading sub={`待办任务 ${todoCount}`}>TODO</HomeHeading>
+            <HeadingWithSub sub={`待办任务 ${todoCount}`}>TODO</HeadingWithSub>
           </CollapseBar>
           <Fade isOpen={isTodoPage} h="full">
             <Todo></Todo>
@@ -106,9 +106,9 @@ export default function Task() {
           }}
         >
           <CollapseBar to={RoutePath.TaskOnProgress}>
-            <HomeHeading sub={`进行中 ${onProgressCount}`}>
+            <HeadingWithSub sub={`进行中 ${onProgressCount}`}>
               On Progress
-            </HomeHeading>
+            </HeadingWithSub>
           </CollapseBar>
           <Fade isOpen={isOnProgressPage || isTodoPage} h="full">
             <OnProgress></OnProgress>
@@ -135,7 +135,7 @@ export default function Task() {
           }}
         >
           <CollapseBar to={RoutePath.TaskDone}>
-            <HomeHeading sub={`已完成 ${doneCount}`}>Done</HomeHeading>
+            <HeadingWithSub sub={`已完成 ${doneCount}`}>Done</HeadingWithSub>
           </CollapseBar>
           <Fade isOpen={isDonePage} h="full">
             <Done></Done>

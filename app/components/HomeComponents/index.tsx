@@ -1,7 +1,7 @@
-import type { BoxProps, HeadingProps } from '@chakra-ui/react'
 import { Box, VStack, HStack, Heading, Text, Flex } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import React from 'react'
+import { HeadingWithSub } from '~/components/HeadingWithSub'
 
 export * from './HomePageScrollItem'
 export * from './HomePageScrollContainer'
@@ -31,26 +31,6 @@ export const Indicator: React.FC<{
   </VStack>
 )
 
-export const HomeHeading: React.FC<
-  HeadingProps & { sub: ReactNode; subProps?: BoxProps }
-> = ({ children, sub, subProps, ...props }) => (
-  <Heading as="h2" textTransform="uppercase" position="relative" {...props}>
-    {children}
-    <Box
-      as="sup"
-      fontSize="16px"
-      top="-13px"
-      lineHeight="16px"
-      ml="8px"
-      fontWeight="500"
-      style={{ writingMode: 'inherit' }}
-      {...subProps}
-    >
-      {sub}
-    </Box>
-  </Heading>
-)
-
 export const Projects: React.FC = () => (
   <Flex w="full" direction="column">
     <Box
@@ -60,7 +40,7 @@ export const Projects: React.FC = () => (
       borderStyle="solid"
       borderColor="secondary.900"
     >
-      <HomeHeading sub="孵化项目">Projects</HomeHeading>
+      <HeadingWithSub sub="孵化项目">Projects</HeadingWithSub>
     </Box>
     <Flex
       h="380px"
