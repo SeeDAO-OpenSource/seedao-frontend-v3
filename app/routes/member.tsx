@@ -1,3 +1,162 @@
+import {
+  Box,
+  Flex,
+  Grid,
+  Heading,
+  HStack,
+  Image,
+  Link,
+  Text,
+} from '@chakra-ui/react'
+import {
+  MEMBER_FILTER_WIDTH,
+  MEMBER_HALL_WIDTH,
+  MEMBER_ITEM_HEIGHT,
+  MEMBER_SEARCH_HEIGHT,
+} from '~/constants'
+import { Indicator } from '~/components/Indicator'
+import { Search } from '~/components/EventComponents'
+import { Filter } from '~/components/Filter'
+import { SGNS } from '~/data/sgn'
+import { Virtuoso } from 'react-virtuoso'
+
 export default function Member() {
-  return <div>Member</div>
+  return (
+    <Grid
+      w="full"
+      h="full"
+      templateColumns={`${MEMBER_HALL_WIDTH}px calc(100% - ${MEMBER_HALL_WIDTH}px)`}
+    >
+      <Flex
+        direction="column"
+        borderRight="1px"
+        borderColor="secondary.900"
+        borderStyle="solid"
+        w="full"
+        px="20px"
+        pt="25px"
+        pb="30px"
+      >
+        <Heading fontSize="110px" w="420px" textTransform="uppercase">
+          Hall of fame
+        </Heading>
+        <Heading as="h2" fontSize="32px" w="420px" textTransform="uppercase">
+          SEEDAO风云榜
+        </Heading>
+        <Box mt="auto">
+          <Heading
+            as="h3"
+            textTransform="uppercase"
+            fontSize="24px"
+            fontWeight="400"
+            mb="20px"
+          >
+            highlight
+          </Heading>
+          <HStack spacing="50px">
+            <Indicator value={420} keyName="SGN HOLDER" valueUnit="+" />
+            <Indicator value={8200} keyName="Member" valueUnit="+" />
+            <Indicator value={5} keyName="NFT Mint" valueUnit="%" />
+          </HStack>
+        </Box>
+      </Flex>
+      <Grid
+        templateRows={`${MEMBER_SEARCH_HEIGHT}px calc(100% - ${MEMBER_SEARCH_HEIGHT}px)`}
+      >
+        <Grid
+          templateColumns={`calc(100% - ${MEMBER_FILTER_WIDTH}px) ${MEMBER_FILTER_WIDTH}px`}
+          borderBottom="1px"
+          borderColor="secondary.900"
+          borderStyle="solid"
+        >
+          <Search
+            borderRight="1px"
+            borderColor="secondary.900"
+            borderStyle="solid"
+          />
+          <Filter />
+        </Grid>
+        <Box
+          as={Virtuoso}
+          h="full"
+          totalCount={Math.ceil(SGNS.length / 3)}
+          mr="-1px"
+          fixedItemHeight={MEMBER_ITEM_HEIGHT}
+          itemContent={(index: number) => (
+            <Grid templateColumns="repeat(3, calc(100% / 3))" key={index}>
+              {new Array(3)
+                .fill(0)
+                .map((_, i) => SGNS[index * 3 + i])
+                .filter((item) => item)
+                .map((item, i) => (
+                  <Grid
+                    key={i}
+                    h="420px"
+                    borderRight="1px"
+                    borderBottom="1px"
+                    borderColor="secondary.900"
+                    borderStyle="solid"
+                    p="30px"
+                    templateColumns="100%"
+                    templateRows="72px calc(100% - 72px)"
+                  >
+                    <Grid
+                      templateColumns="72px calc(100% - 72px - 20px)"
+                      gap="20px"
+                    >
+                      <Image src={item.tokenUrl} alt="avatar" h="72px" />
+                      <Flex direction="column">
+                        {item.discordName ? (
+                          <Heading
+                            as="h4"
+                            fontSize="20px"
+                            whiteSpace="nowrap"
+                            textOverflow="ellipsis"
+                            overflow="hidden"
+                            title={item.discordName}
+                            mb="5px"
+                          >
+                            {item.discordName}
+                          </Heading>
+                        ) : null}
+                        <Heading as="h5" color="adorn.100" fontSize="12px">
+                          SGN #{item.tokenId}
+                        </Heading>
+                        <HStack spacing="10px" mt="auto">
+                          {item.contact?.twitter ? (
+                            <Link href={item.contact.twitter} target="_blank">
+                              <Image
+                                src="/assets/svg/social/twitter.svg"
+                                alt="twitter"
+                                w="16px"
+                                h="16px"
+                              />
+                            </Link>
+                          ) : null}
+                        </HStack>
+                      </Flex>
+                    </Grid>
+                    {item.description ? (
+                      <Text
+                        color="secondary.800"
+                        fontSize="12px"
+                        mt="16px"
+                        lineHeight="180%"
+                        overflowX="hidden"
+                        overflowY="scroll"
+                        h="full"
+                        textAlign="justify"
+                        whiteSpace="pre-line"
+                      >
+                        {item.description}
+                      </Text>
+                    ) : null}
+                  </Grid>
+                ))}
+            </Grid>
+          )}
+        />
+      </Grid>
+    </Grid>
+  )
 }

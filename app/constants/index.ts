@@ -8,3 +8,7 @@ export const COLLAPSE_BAR_WIDTH = 60
 export const EVENT_FILTER_WIDTH = 500
 export const TASK_FILTER_WIDTH = 600 - COLLAPSE_BAR_WIDTH - 4
 export const SHADOW_BORDER = '0 0 0 1px var(--chakra-colors-secondary-900)'
+export const MEMBER_HALL_WIDTH = 500
+export const MEMBER_SEARCH_HEIGHT = 68
+export const MEMBER_FILTER_WIDTH = 270
+export const MEMBER_ITEM_HEIGHT = 420

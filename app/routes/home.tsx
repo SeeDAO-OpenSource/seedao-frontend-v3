@@ -13,7 +13,6 @@ import { useRef } from 'react'
 import BackgroundVideoPoster from '~/assets/png/seedao_index_poster.png'
 import BackgroundVideo from '~/assets/video/seedao_index.mp4'
 import { Link as RemixLink } from '@remix-run/react'
-import { Indicator } from '~/components/HomeComponents'
 import { HeadingWithSub } from '~/components/HeadingWithSub'
 import { CollapseBar } from '~/components/CollapseBar'
 import { RoutePath } from '~/constants/RoutePath'
@@ -23,6 +22,7 @@ import About from './home/about'
 import { Fade } from '~/components/Fade'
 import { COLLAPSE_BAR_WIDTH, NAVIGATION_BAR_HEIGHT } from '~/constants'
 import { ScrollContainer } from '~/components/ScrollContainer'
+import { Indicator } from '~/components/Indicator'
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
