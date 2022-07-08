@@ -19,47 +19,71 @@ import { Search } from '~/components/EventComponents'
 import { Filter } from '~/components/Filter'
 import { SGNS } from '~/data/sgn'
 import { Virtuoso } from 'react-virtuoso'
+import { AvatarsBackground, ITEM_SIZE } from '~/components/AvatarsBackground'
+import { MemberTags } from '~/components/MemberTags'
+import { useState } from 'react'
+
+const MEMBER_LIST_ID = 'member_list_id'
 
 export default function Member() {
+  const [activeIndex, setActiveIndex] = useState(0)
+
   return (
     <Grid
       w="full"
       h="full"
       templateColumns={`${MEMBER_HALL_WIDTH}px calc(100% - ${MEMBER_HALL_WIDTH}px)`}
     >
-      <Flex
-        direction="column"
-        borderRight="1px"
-        borderColor="secondary.900"
-        borderStyle="solid"
-        w="full"
-        px="20px"
-        pt="25px"
-        pb="30px"
-      >
-        <Heading fontSize="110px" w="420px" textTransform="uppercase">
-          Hall of fame
-        </Heading>
-        <Heading as="h2" fontSize="32px" w="420px" textTransform="uppercase">
-          SEEDAO风云榜
-        </Heading>
-        <Box mt="auto">
-          <Heading
-            as="h3"
-            textTransform="uppercase"
-            fontSize="24px"
-            fontWeight="400"
-            mb="20px"
-          >
-            highlight
-          </Heading>
-          <HStack spacing="50px">
-            <Indicator value={420} keyName="SGN HOLDER" valueUnit="+" />
-            <Indicator value={8200} keyName="Member" valueUnit="+" />
-            <Indicator value={5} keyName="NFT Mint" valueUnit="%" />
-          </HStack>
+      <Box position="relative" overflow="hidden">
+        <Box
+          position="absolute"
+          top="-80px"
+          left="40px"
+          w={`calc(${ITEM_SIZE}px * 7)`}
+          h="150%"
+        >
+          <AvatarsBackground
+            images={SGNS.map((item) => item.tokenUrl)}
+            activeIndex={activeIndex}
+          />
         </Box>
-      </Flex>
+        <Flex
+          direction="column"
+          borderRight="1px"
+          borderColor="secondary.900"
+          borderStyle="solid"
+          w="full"
+          h="full"
+          px="20px"
+          pt="25px"
+          pb="30px"
+          position="relative"
+          zIndex={1}
+        >
+          <Heading fontSize="110px" w="420px" textTransform="uppercase">
+            Hall of fame
+          </Heading>
+          <Heading as="h2" fontSize="32px" w="420px" textTransform="uppercase">
+            SEEDAO风云榜
+          </Heading>
+          <Box mt="auto">
+            <Heading
+              as="h3"
+              textTransform="uppercase"
+              fontSize="24px"
+              fontWeight="400"
+              mb="20px"
+            >
+              highlight
+            </Heading>
+            <HStack spacing="50px">
+              <Indicator value={420} keyName="SGN HOLDER" valueUnit="+" />
+              <Indicator value={8200} keyName="Member" valueUnit="+" />
+              <Indicator value={5} keyName="NFT Mint" valueUnit="%" />
+            </HStack>
+          </Box>
+        </Flex>
+      </Box>
       <Grid
         templateRows={`${MEMBER_SEARCH_HEIGHT}px calc(100% - ${MEMBER_SEARCH_HEIGHT}px)`}
       >
@@ -77,6 +101,7 @@ export default function Member() {
           <Filter />
         </Grid>
         <Box
+          id={MEMBER_LIST_ID}
           as={Virtuoso}
           h="full"
           totalCount={Math.ceil(SGNS.length / 3)}
@@ -91,14 +116,18 @@ export default function Member() {
                 .map((item, i) => (
                   <Grid
                     key={i}
-                    h="420px"
+                    h={`${MEMBER_ITEM_HEIGHT}px`}
                     borderRight="1px"
                     borderBottom="1px"
                     borderColor="secondary.900"
                     borderStyle="solid"
                     p="30px"
+                    pr="25px"
                     templateColumns="100%"
                     templateRows="72px calc(100% - 72px)"
+                    onMouseMove={() => {
+                      setActiveIndex(index * 3 + i)
+                    }}
                   >
                     <Grid
                       templateColumns="72px calc(100% - 72px - 20px)"
@@ -136,21 +165,47 @@ export default function Member() {
                         </HStack>
                       </Flex>
                     </Grid>
-                    {item.description ? (
-                      <Text
-                        color="secondary.800"
-                        fontSize="12px"
-                        mt="16px"
-                        lineHeight="180%"
+                    <Flex pt="20px" direction="column">
+                      {item.guilds && item.guilds.length > 0 ? (
+                        <MemberTags tags={item.guilds} />
+                      ) : null}
+                      {item.projects && item.projects.length > 0 ? (
+                        <MemberTags tags={item.projects} />
+                      ) : null}
+                      <Box
                         overflowX="hidden"
                         overflowY="scroll"
                         h="full"
-                        textAlign="justify"
-                        whiteSpace="pre-line"
+                        pr="10px"
+                        mt="16px"
+                        css={{
+                          '&::-webkit-scrollbar': {
+                            width: '1px',
+                            height: '1px',
+                          },
+                          '&::-webkit-scrollbar-track': {
+                            width: '1px',
+                            height: '1px',
+                          },
+                          '&::-webkit-scrollbar-thumb': {
+                            backgroundColor:
+                              'var(--chakra-colors-secondary-200)',
+                          },
+                        }}
                       >
-                        {item.description}
-                      </Text>
-                    ) : null}
+                        {item.description ? (
+                          <Text
+                            color="secondary.800"
+                            fontSize="12px"
+                            lineHeight="180%"
+                            textAlign="justify"
+                            whiteSpace="pre-line"
+                          >
+                            {item.description}
+                          </Text>
+                        ) : null}
+                      </Box>
+                    </Flex>
                   </Grid>
                 ))}
             </Grid>
