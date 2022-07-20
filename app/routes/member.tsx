@@ -22,11 +22,13 @@ import { Virtuoso } from 'react-virtuoso'
 import { AvatarsBackground, ITEM_SIZE } from '~/components/AvatarsBackground'
 import { MemberTags } from '~/components/MemberTags'
 import { useState } from 'react'
+import { useDebounce } from '~/hooks/useDebounce'
 
 const MEMBER_LIST_ID = 'member_list_id'
 
 export default function Member() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const onChangeActiveIndex = useDebounce(setActiveIndex)
 
   return (
     <Grid
@@ -37,10 +39,11 @@ export default function Member() {
       <Box position="relative" overflow="hidden">
         <Box
           position="absolute"
-          top="-80px"
-          left="40px"
-          w={`calc(${ITEM_SIZE}px * 7)`}
+          left="220px"
+          top="0"
+          w={`calc(${ITEM_SIZE}px * 11)`}
           h="150%"
+          transform="rotate(15deg)"
         >
           <AvatarsBackground
             images={SGNS.map((item) => item.tokenUrl)}
@@ -86,6 +89,7 @@ export default function Member() {
       </Box>
       <Grid
         templateRows={`${MEMBER_SEARCH_HEIGHT}px calc(100% - ${MEMBER_SEARCH_HEIGHT}px)`}
+        mb="-1px"
       >
         <Grid
           templateColumns={`calc(100% - ${MEMBER_FILTER_WIDTH}px) ${MEMBER_FILTER_WIDTH}px`}
@@ -125,9 +129,8 @@ export default function Member() {
                     pr="25px"
                     templateColumns="100%"
                     templateRows="72px calc(100% - 72px)"
-                    onMouseMove={() => {
-                      setActiveIndex(index * 3 + i)
-                    }}
+                    onMouseEnter={() => onChangeActiveIndex(index * 3 + i)}
+                    onMouseMove={() => setActiveIndex(index * 3 + i)}
                   >
                     <Grid
                       templateColumns="72px calc(100% - 72px - 20px)"
