@@ -6,6 +6,7 @@ import {
   Grid,
   AspectRatio,
   Image,
+  Center,
 } from '@chakra-ui/react'
 import React from 'react'
 import {
@@ -20,6 +21,9 @@ import {
 } from '~/components/HomeComponents'
 import { HeadingWithSub } from '~/components/HeadingWithSub'
 import { useScrollButtons } from '~/hooks/useScrollButtons'
+import { Link as RemixLink } from '@remix-run/react'
+import { RoutePath } from '~/constants/RoutePath'
+import { GuildItems } from '~/data/guilds'
 
 const WelCome = () => (
   <Flex
@@ -43,6 +47,7 @@ const WelCome = () => (
       <Image src="/assets/svg/welcome-icon.svg" w="64px" h="64px" ml="56px" />
     </Flex>
     <Link
+      as={RemixLink}
       display="inline-flex"
       alignItems="center"
       mt="auto"
@@ -50,6 +55,7 @@ const WelCome = () => (
       textDecoration="underline"
       lineHeight="20px"
       fontWeight="semibold"
+      to={RoutePath.HomeAbout}
     >
       Learn more
       <Image src="/assets/svg/home-arrow.svg" w="24px" h="24px" ml="20px" />
@@ -174,22 +180,46 @@ const Guilds = () => (
       borderStyle="solid"
       borderColor="secondary.900"
     >
-      {new Array(9)
-        .fill(0)
-        .map((_, i) => i)
-        .map((i) => (
-          <AspectRatio
-            key={i}
-            ratio={1}
-            margin="0 -1px -1px 0"
-            borderBottom="1px"
-            borderRight="1px"
-            borderStyle="solid"
-            borderColor="secondary.900"
+      {GuildItems.map((guild, i) => (
+        <AspectRatio
+          key={i}
+          ratio={1}
+          margin="0 -1px -1px 0"
+          borderBottom="1px"
+          borderRight="1px"
+          borderStyle="solid"
+          borderColor="secondary.900"
+        >
+          <Flex
+            direction="column"
+            p="20px"
+            as="a"
+            target="_blank"
+            href={guild.link.notion}
+            position="relative"
+            _hover={{ bg: 'secondary.100' }}
           >
-            <Box />
-          </AspectRatio>
-        ))}
+            <Center top="30px" left="0" w="full" position="absolute">
+              <Image
+                src={guild.img}
+                alt={guild.name}
+                w="80px"
+                h="80px"
+                objectFit="cover"
+              />
+            </Center>
+            <Flex mt="auto" w="full" align="center">
+              <Text as="h5" fontSize="16px" whiteSpace="pre" lineHeight="16px">
+                {guild.name}
+              </Text>
+              <Image src={guild.icon} w="16px" h="16px" alt="icon" ml="auto" />
+            </Flex>
+          </Flex>
+        </AspectRatio>
+      ))}
+      <Flex direction="column" justify="flex-end" p="20px">
+        <Box>MORE</Box>
+      </Flex>
     </Grid>
   </Flex>
 )
