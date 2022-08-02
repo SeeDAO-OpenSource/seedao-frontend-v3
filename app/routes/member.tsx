@@ -62,6 +62,7 @@ export default function Member() {
           pb="30px"
           position="relative"
           zIndex={1}
+          bg="linear-gradient(-30deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), rgba(0, 0, 0, 1))"
         >
           <Heading fontSize="110px" w="420px" textTransform="uppercase">
             Hall of fame
