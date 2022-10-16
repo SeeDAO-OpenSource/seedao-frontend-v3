@@ -10,8 +10,7 @@ import {
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import React from 'react'
-
-export type TaskCardStatus = 'TODO' | 'ON_PROGRESS' | 'DONE'
+import { TaskStatus } from '~/api/models/Task'
 
 export interface TaskCardProps {
   heading: string
@@ -19,7 +18,7 @@ export interface TaskCardProps {
   user: ReactNode
   description: ReactNode
   applyUrl?: string
-  status: TaskCardStatus
+  status: TaskStatus
 }
 
 export const TaskCardHeight = 324
@@ -32,15 +31,15 @@ export const TaskCard: React.FC<TaskCardProps> = ({
   applyUrl,
   status,
 }) => {
-  const statusTextMap: { [key in TaskCardStatus]: string } = {
-    TODO: 'TODO',
-    ON_PROGRESS: 'ON_PROGRESS',
-    DONE: 'DONE',
+  const statusTextMap: { [key in TaskStatus]: string } = {
+    [TaskStatus.Todo]: 'TODO',
+    [TaskStatus.OnProgress]: 'ON_PROGRESS',
+    [TaskStatus.Completed]: 'DONE',
   }
-  const statusIconMap: { [key in TaskCardStatus]: string } = {
-    TODO: '/assets/svg/task_status/todo.svg',
-    ON_PROGRESS: '/assets/svg/task_status/on_progress.svg',
-    DONE: '/assets/svg/task_status/done.svg',
+  const statusIconMap: { [key in TaskStatus]: string } = {
+    [TaskStatus.Todo]: '/assets/svg/task_status/todo.svg',
+    [TaskStatus.OnProgress]: '/assets/svg/task_status/on_progress.svg',
+    [TaskStatus.Completed]: '/assets/svg/task_status/done.svg',
   }
 
   return (
@@ -108,12 +107,12 @@ export const TaskCard: React.FC<TaskCardProps> = ({
           spacing="7px"
         >
           <Image
-            src={statusIconMap[status] || statusIconMap['TODO']}
-            alt={statusTextMap[status] || statusTextMap['TODO']}
+            src={statusIconMap[status] || statusIconMap[TaskStatus.Todo]}
+            alt={statusTextMap[status] || statusTextMap[TaskStatus.Todo]}
             w="10px"
             h="10px"
           />
-          <Box>{statusTextMap[status] || statusTextMap['TODO']}</Box>
+          <Box>{statusTextMap[status] || statusTextMap[TaskStatus.Todo]}</Box>
         </HStack>
       </Flex>
     </Flex>

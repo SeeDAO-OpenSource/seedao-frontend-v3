@@ -23,6 +23,9 @@ import { Fade } from '~/components/Fade'
 import { COLLAPSE_BAR_WIDTH, NAVIGATION_BAR_HEIGHT } from '~/constants'
 import { ScrollContainer } from '~/components/ScrollContainer'
 import { Indicator } from '~/components/Indicator'
+import { useAPI } from '~/hooks/useAPI'
+import useSWR from 'swr'
+import { QueryKey } from '~/api/QueryKey'
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -30,6 +33,14 @@ export default function Home() {
   const isHome = location.pathname === RoutePath.Home
   const isHomeRoadMap = location.pathname === RoutePath.HomeRoadmap
   const isHomeAbout = location.pathname === RoutePath.HomeAbout
+  const api = useAPI()
+
+  const { data: homeStatisticalData } = useSWR(
+    [QueryKey.GetHomeStatisticalData],
+    async () => {
+      return api.getHomeStatisticalData()
+    }
+  )
 
   return (
     <Grid
@@ -153,10 +164,30 @@ export default function Home() {
               highlight
             </Heading>
             <HStack spacing="50px">
-              <Indicator value={8200} keyName="Member" valueUnit="+" />
-              <Indicator value={44000} keyName="Token" valueUnit="+" />
-              <Indicator value={5} keyName="NFT Mint" valueUnit="%" />
-              <Indicator value={8} keyName="Project" valueUnit="+" />
+              <Indicator
+                value={homeStatisticalData?.member}
+                keyName="Member"
+                valueUnit="+"
+              />
+              <Indicator
+                value={homeStatisticalData?.token}
+                keyName="Token"
+                valueUnit="+"
+              />
+              <Indicator
+                value={
+                  homeStatisticalData?.nftmint
+                    ? homeStatisticalData?.nftmint * 100
+                    : undefined
+                }
+                keyName="NFT Mint"
+                valueUnit="%"
+              />
+              <Indicator
+                value={homeStatisticalData?.project}
+                keyName="Project"
+                valueUnit="+"
+              />
             </HStack>
             <HStack
               mt="40px"

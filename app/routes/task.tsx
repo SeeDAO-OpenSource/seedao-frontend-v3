@@ -1,10 +1,10 @@
 import {
-  TASK_FILTER_WIDTH,
-  EVENT_TITLE_WIDTH,
-  EVENT_SEARCH_BAR_HEIGHT,
   COLLAPSE_BAR_WIDTH,
+  EVENT_SEARCH_BAR_HEIGHT,
+  EVENT_TITLE_WIDTH,
+  TASK_FILTER_WIDTH,
 } from '~/constants'
-import { Flex, Grid, Image, Box } from '@chakra-ui/react'
+import { Box, Flex, Grid, Image } from '@chakra-ui/react'
 import { HeadingWithSub } from '~/components/HeadingWithSub'
 import { Search } from '~/components/EventComponents'
 import { Filter } from '~/components/Filter'
@@ -15,6 +15,8 @@ import OnProgress from './task/on_progress'
 import Done from './task/done'
 import { useLocation } from '@remix-run/react'
 import { Fade } from '~/components/Fade'
+import { useDataSource } from '~/hooks/TaskPage/useDataSource'
+import { TaskStatus } from '~/api/models/Task'
 
 export default function Task() {
   const location = useLocation()
@@ -22,9 +24,10 @@ export default function Task() {
   const isOnProgressPage = location.pathname === RoutePath.TaskOnProgress
   const isDonePage = location.pathname === RoutePath.TaskDone
 
-  const todoCount = 20
-  const onProgressCount = 40
-  const doneCount = 80
+  const todoCount = useDataSource(TaskStatus.Todo)?.data?.length || 0
+  const onProgressCount =
+    useDataSource(TaskStatus.OnProgress)?.data?.length || 0
+  const doneCount = useDataSource(TaskStatus.Completed)?.data?.length || 0
 
   return (
     <Grid

@@ -24,6 +24,10 @@ import { useScrollButtons } from '~/hooks/useScrollButtons'
 import { Link as RemixLink } from '@remix-run/react'
 import { RoutePath } from '~/constants/RoutePath'
 import { GuildItems } from '~/data/guilds'
+import useSWR from 'swr'
+import { QueryKey } from '~/api/QueryKey'
+import { useAPI } from '~/hooks/useAPI'
+import dayjs from 'dayjs'
 
 const WelCome = () => (
   <Flex
@@ -71,6 +75,11 @@ const Events = () => {
     onScrollToRightByStep,
     onScrollToLeftByStep,
   } = useScrollButtons({ step: HOME_PAGE_SCROLL_ITEM_WIDTH * 3 })
+  const api = useAPI()
+  const { data: homeEvent } = useSWR([QueryKey.GetHomeEventItems], async () => {
+    return api.getHomeEventItems()
+  })
+
   return (
     <Flex w="full" direction="column">
       <Flex
@@ -96,18 +105,15 @@ const Events = () => {
         />
       </Flex>
       <HomePageScrollContainer ref={scrollContainerRef}>
-        {new Array(10)
-          .fill(0)
-          .map((_, i) => i)
-          .map((i) => (
-            <HomePageScrollItem
-              key={i}
-              date="05.26"
-              time="20:00"
-              title={`游戏化产品社区内调研准备会${i}`}
-              description="本周四， 晚上八点， 聊需求调研。 都先看历史信息， 并留下你宝贵的想法。"
-            />
-          ))}
+        {homeEvent?.events.map((event) => (
+          <HomePageScrollItem
+            key={event.time + event.subject + event.content}
+            date={dayjs(event.time).format('MM.DD')}
+            time={dayjs(event.time).format('HH:mm')}
+            title={event.subject}
+            description={event.content}
+          />
+        ))}
       </HomePageScrollContainer>
     </Flex>
   )
@@ -121,6 +127,11 @@ const News = () => {
     onScrollToRightByStep,
     onScrollToLeftByStep,
   } = useScrollButtons({ step: HOME_PAGE_SCROLL_ITEM_WIDTH * 3 })
+  const api = useAPI()
+  const { data: homeNews } = useSWR([QueryKey.GetHomeNewItems], async () => {
+    return api.getHomeNewsItems()
+  })
+
   return (
     <Flex w="full" direction="column">
       <Flex
@@ -146,18 +157,15 @@ const News = () => {
         />
       </Flex>
       <HomePageScrollContainer ref={scrollContainerRef}>
-        {new Array(10)
-          .fill(0)
-          .map((_, i) => i)
-          .map((i) => (
-            <HomePageScrollItem
-              key={i}
-              date="05.26"
-              time="20:00"
-              title={`游戏化产品社区内调研准备会${i}`}
-              description="本周四， 晚上八点， 聊需求调研。 都先看历史信息， 并留下你宝贵的想法。"
-            />
-          ))}
+        {homeNews?.news?.map((newItem) => (
+          <HomePageScrollItem
+            key={newItem.time + newItem.subject + newItem.content}
+            date={dayjs(newItem.time).format('MM.DD')}
+            time={dayjs(newItem.time).format('HH:mm')}
+            title={newItem.subject}
+            description={newItem.content}
+          />
+        ))}
       </HomePageScrollContainer>
     </Flex>
   )
