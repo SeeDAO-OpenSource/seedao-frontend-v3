@@ -11,12 +11,12 @@ export const Search: React.FC<GridProps> = ({ ...props }) => {
       gridGap="10px"
       {...props}
     >
-      <Image src="/assets/svg/search.svg" w="24px" h="24px" />
-      <Input
-        placeholder="SEARCH GUILD / PROJECT / DISCORD"
-        variant="unstyled"
-        _placeholder={{ color: 'secondary.300' }}
-      />
+      {/*<Image src="/assets/svg/search.svg" w="24px" h="24px" />*/}
+      {/*<Input*/}
+      {/*  placeholder="SEARCH GUILD / PROJECT / DISCORD"*/}
+      {/*  variant="unstyled"*/}
+      {/*  _placeholder={{ color: 'secondary.300' }}*/}
+      {/*/>*/}
     </Grid>
   )
 }

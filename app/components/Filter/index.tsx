@@ -10,8 +10,8 @@ export const Filter: React.FC = () => {
       fontSize="18px"
       px="30px"
     >
-      <Image src="/assets/svg/filter.svg" w="24px" h="24px" mr="10px" />
-      <Box>Filter</Box>
+      {/*<Image src="/assets/svg/filter.svg" w="24px" h="24px" mr="10px" />*/}
+      {/*<Box>Filter</Box>*/}
     </Flex>
   )
 }
