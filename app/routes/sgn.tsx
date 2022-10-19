@@ -1,11 +1,14 @@
 import { StripeBackground, STRIPE_WIDTH } from '~/components/StripeBackground'
 import { ScrollContainer } from '~/components/ScrollContainer'
+import type { StackProps } from '@chakra-ui/react'
 import {
   Box,
+  Flex,
   Grid,
   Heading,
   HStack,
   Image,
+  keyframes,
   Link,
   Text,
   VStack,
@@ -13,8 +16,55 @@ import {
 import { IconG, IconN, IconS } from '~/components/SgnComponents/SgnTitleIcon'
 import { ButtonWithShadow } from '~/components/ButtonWithShadow'
 import { HeadingWithSub } from '~/components/HeadingWithSub'
+import type { ReactNode } from 'react'
+import useSWR from 'swr'
+import { useAPI } from '~/hooks/useAPI'
+import { QueryKey } from '~/api/QueryKey'
+
+const animationKeyframes = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+`
+
+const DataSetStack: React.FC<
+  StackProps & {
+    items?: ReactNode
+    owners?: ReactNode
+    price?: ReactNode
+    totalVolume?: ReactNode
+  }
+> = ({ items, owners, price, totalVolume, ...props }) => {
+  return (
+    <HStack spacing="80px" whiteSpace="nowrap" px="25px" {...props}>
+      <HStack spacing="16px">
+        <Box>ITEMS</Box>
+        <Box>{items || '-'}</Box>
+      </HStack>
+      <HStack spacing="16px">
+        <Box>OWNERS</Box>
+        <Box>{owners || '-'}</Box>
+      </HStack>
+      <HStack spacing="16px">
+        <Box>FLOOR PRICE</Box>
+        <Flex align="center">
+          <Image src="/assets/svg/ether.svg" w="16px" h="26px" mr="4px" />
+          {price || '-'}
+        </Flex>
+      </HStack>
+      <HStack spacing="16px">
+        <Box>TOTAL VOLUME</Box>
+        <Box>{totalVolume || '-'}</Box>
+      </HStack>
+    </HStack>
+  )
+}
 
 export default function Sgn() {
+  const api = useAPI()
+  const { data } = useSWR([QueryKey.GetSgnStatisticalData], () =>
+    api.getSgnStatisticalData()
+  )
+
   return (
     <ScrollContainer>
       <Box position="relative" h="2200px">
@@ -259,6 +309,54 @@ export default function Sgn() {
           </HStack>
         </Box>
       </Box>
+      <Flex
+        position="absolute"
+        h="60px"
+        w="full"
+        borderTop="1px solid"
+        borderColor="secondary.900"
+        bg="primary.900"
+        bottom="0"
+        left="0"
+        lineHeight="60px"
+        fontSize="36px"
+        fontWeight="400"
+        zIndex={3}
+      >
+        <Flex
+          h="inherit"
+          align="center"
+          px="30px"
+          borderRight="1px solid"
+          borderColor="secondary.900"
+        >
+          <Image
+            src="/assets/svg/social/opensea.svg"
+            w="36px"
+            h="36px"
+            mr="10px"
+          />
+          <Box>OPENSEA DATA</Box>
+        </Flex>
+        <Flex flex={1} overflow="hidden" position="relative">
+          <Flex
+            flex={1}
+            overflow="hidden"
+            position="absolute"
+            animation={`${animationKeyframes} 10s linear infinite`}
+          >
+            {new Array(2).fill(0).map((_, i) => (
+              <DataSetStack
+                key={i}
+                items={data?.totals}
+                owners={data?.holder}
+                price={data?.floor_price}
+                totalVolume={data?.trade_volume}
+              />
+            ))}
+          </Flex>
+        </Flex>
+      </Flex>
     </ScrollContainer>
   )
 }

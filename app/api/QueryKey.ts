@@ -3,4 +3,5 @@ export enum QueryKey {
   GetHomeEventItems = 'GetHomeEventItems',
   GetHomeNewItems = 'GetHomeNewItems',
   GetTask = 'GetTask',
+  GetSgnStatisticalData = 'GetSgnStatisticalData',
 }
