@@ -5,6 +5,7 @@ import {
   Meta,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
   useLocation,
   useOutlet,
 } from '@remix-run/react'
@@ -22,6 +23,9 @@ import {
 import { NavigationBar } from '~/components/NavigationBar'
 import { AnimatePresence } from 'framer-motion'
 import { AnimationContainer } from '~/components/AnimationContainer'
+import { getUrlEnv } from '~/constants/url'
+import { json } from '@remix-run/node'
+import { EnvContext } from '~/hooks/useEnv'
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -29,9 +33,20 @@ export const meta: MetaFunction = () => ({
   viewport: 'width=device-width,initial-scale=1',
 })
 
+export function loader() {
+  const URL_ENV = getUrlEnv()
+  return json({
+    PUBLIC_ENV: {
+      ...URL_ENV,
+    },
+  })
+}
+
 export default function App() {
   const outlet = useOutlet()
   const location = useLocation()
+  const loaderData = useLoaderData()
+  const PUBLIC_ENV = loaderData?.PUBLIC_ENV || {}
 
   return (
     <html lang="en">
@@ -41,42 +56,44 @@ export default function App() {
         <link rel="stylesheet" href="/styles/global.css" />
       </head>
       <Center as="body" minW={`${MAX_WIDTH}px`} minH="100vh">
-        <ChakraProvider theme={theme}>
-          <DAppProvider config={{}}>
-            <Grid
-              templateRows={`${NAVIGATION_BAR_HEIGHT}px calc(100% - ${NAVIGATION_BAR_HEIGHT}px)`}
-              w={`${MAX_WIDTH}px`}
-              h="100vh"
-              mx="auto"
-              maxH={`${MAX_HEIGHT}px`}
-              position="relative"
-              userSelect="none"
-            >
-              <NavigationBar />
-              <Box
-                w="full"
-                h="full"
-                maxH={`${CONTAINER_HEIGHT}px`}
-                flex={1}
+        <EnvContext.Provider value={PUBLIC_ENV}>
+          <ChakraProvider theme={theme}>
+            <DAppProvider config={{}}>
+              <Grid
+                templateRows={`${NAVIGATION_BAR_HEIGHT}px calc(100% - ${NAVIGATION_BAR_HEIGHT}px)`}
+                w={`${MAX_WIDTH}px`}
+                h="100vh"
+                mx="auto"
+                maxH={`${MAX_HEIGHT}px`}
                 position="relative"
-                style={{
-                  perspective: 800,
-                }}
+                userSelect="none"
               >
-                <AnimatePresence initial={false}>
-                  <AnimationContainer
-                    key={location.pathname.split('/')[1]}
-                    animation={location.pathname.split('/')[1]}
-                    shadow={SHADOW_BORDER}
-                    bg="primary.100"
-                  >
-                    {outlet}
-                  </AnimationContainer>
-                </AnimatePresence>
-              </Box>
-            </Grid>
-          </DAppProvider>
-        </ChakraProvider>
+                <NavigationBar />
+                <Box
+                  w="full"
+                  h="full"
+                  maxH={`${CONTAINER_HEIGHT}px`}
+                  flex={1}
+                  position="relative"
+                  style={{
+                    perspective: 800,
+                  }}
+                >
+                  <AnimatePresence initial={false}>
+                    <AnimationContainer
+                      key={location.pathname.split('/')[1]}
+                      animation={location.pathname.split('/')[1]}
+                      shadow={SHADOW_BORDER}
+                      bg="primary.100"
+                    >
+                      {outlet}
+                    </AnimationContainer>
+                  </AnimatePresence>
+                </Box>
+              </Grid>
+            </DAppProvider>
+          </ChakraProvider>
+        </EnvContext.Provider>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

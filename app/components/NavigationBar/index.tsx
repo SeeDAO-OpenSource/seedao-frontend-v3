@@ -17,6 +17,7 @@ import { RoutePath } from '~/constants/RoutePath'
 import { getNavButtonProps } from '~/themes'
 import { Link as RemixLink, useLocation } from '@remix-run/react'
 import { NAVIGATION_BAR_HEIGHT } from '~/constants'
+import { useEnv } from '~/hooks/useEnv'
 
 const NavButton: React.FC<ButtonProps & { active?: boolean; to?: string }> = ({
   children,
@@ -101,6 +102,7 @@ export const NavigationBar: React.FC = () => {
   const location = useLocation()
   const splitLineEl = <Box bg="secondary.900" h="14px" w="2px" mx="16px" />
   const pathnamePart1 = location.pathname.split('/')[1]
+  const { POAP_URL } = useEnv()
 
   return (
     <Flex
@@ -216,8 +218,8 @@ export const NavigationBar: React.FC = () => {
             </MenuItem>
             <MenuItem>
               <Link
-                as={RemixLink}
-                to={RoutePath.Poap}
+                href={POAP_URL}
+                target="_blank"
                 display="flex"
                 w="full"
                 h="full"

@@ -26,6 +26,7 @@ import { Indicator } from '~/components/Indicator'
 import { useAPI } from '~/hooks/useAPI'
 import useSWR from 'swr'
 import { QueryKey } from '~/api/QueryKey'
+import { useEnv } from '~/hooks/useEnv'
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -34,6 +35,7 @@ export default function Home() {
   const isHomeRoadMap = location.pathname === RoutePath.HomeRoadmap
   const isHomeAbout = location.pathname === RoutePath.HomeAbout
   const api = useAPI()
+  const ENV = useEnv()
 
   const { data: homeStatisticalData } = useSWR(
     [QueryKey.GetHomeStatisticalData],
@@ -246,22 +248,22 @@ export default function Home() {
               lineHeight="24px"
             >
               <Box>Join us</Box>
-              <Link>
+              <Link href={ENV.TWITTER_URL} target="_blank">
                 <Image src="/assets/svg/social/twitter.svg" w="24px" h="24px" />
               </Link>
-              <Link>
+              <Link href={ENV.DISCORD_URL} target="_blank">
                 <Image src="/assets/svg/social/discord.svg" w="24px" h="24px" />
               </Link>
-              <Link>
+              <Link href={ENV.NOTION_URL} target="_blank">
                 <Image src="/assets/svg/social/notion.svg" w="24px" h="24px" />
               </Link>
-              <Link>
+              <Link href={ENV.OPENSEA_URL} target="_blank">
                 <Image src="/assets/svg/social/opensea.svg" w="24px" h="24px" />
               </Link>
               <Link>
                 <Image src="/assets/svg/social/wechat.svg" w="24px" h="24px" />
               </Link>
-              <Link>
+              <Link href={ENV.MIRROR_URL} target="_blank">
                 <Image src="/assets/svg/social/mirror.svg" w="24px" h="24px" />
               </Link>
             </HStack>

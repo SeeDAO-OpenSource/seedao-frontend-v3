@@ -85,6 +85,8 @@ const animationMap: {
   start: StartAnimation,
   home: OpacityAnimation,
   sgn: SgnAnimation,
+  deschool: OpacityAnimation,
+  member: OpacityAnimation,
 }
 
 export const AnimationContainer: React.FC<

@@ -1,3 +1,7 @@
+import { Box } from '@chakra-ui/react'
+import { useEnv } from '~/hooks/useEnv'
+
 export default function Govern() {
-  return <div>govern</div>
+  const { FORUM_URL } = useEnv()
+  return <Box as="iframe" src={FORUM_URL} w="full" h="full" flex={1} />
 }
