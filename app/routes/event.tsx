@@ -1,5 +1,6 @@
 import { Box, Flex, Grid, Image } from '@chakra-ui/react'
 import { Link as RemixLink, useLocation } from '@remix-run/react'
+import type { VirtuosoHandle } from 'react-virtuoso'
 import { Virtuoso } from 'react-virtuoso'
 import dayjs from 'dayjs'
 import type { ScheduleListItem } from '~/components/EventComponents'
@@ -12,7 +13,7 @@ import {
   Schedule,
 } from '~/components/EventComponents'
 import { HeadingWithSub } from '~/components/HeadingWithSub'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   CONTAINER_HEIGHT,
   EVENT_TITLE_WIDTH,
@@ -24,6 +25,7 @@ import { Filter } from '~/components/Filter'
 
 const totalCount = 500
 const baseLineIndex = Math.floor(totalCount / 2)
+const fixedItemHeight = 160
 
 const exampleScheduleItem = {
   time: '20:00 – 21:00',
@@ -68,6 +70,18 @@ export default function Event() {
     dayjs(querySearch.get('date') || dayjs())
   )
 
+  const virtuosoRef = useRef<VirtuosoHandle>(null)
+  useEffect(() => {
+    const timeouts = [50, 100, 150, 200].map((ms) =>
+      setTimeout(() => {
+        virtuosoRef.current?.scrollToIndex(baseLineIndex)
+      }, ms)
+    )
+    return () => {
+      timeouts.forEach((timeout) => clearTimeout(timeout))
+    }
+  }, [])
+
   return (
     <Grid
       templateColumns={`calc(100% - ${EVENT_FILTER_WIDTH}px) ${EVENT_FILTER_WIDTH}px`}
@@ -108,17 +122,18 @@ export default function Event() {
           <Search />
         </Grid>
         <Box
+          ref={virtuosoRef as any}
           as={Virtuoso}
           w="full"
           h="full"
           totalCount={totalCount}
           initialTopMostItemIndex={baseLineIndex}
-          fixedItemHeight={160}
-          overscan={160 * 7}
+          fixedItemHeight={fixedItemHeight}
+          overscan={fixedItemHeight * 7}
           itemContent={(index: number) => (
             <Grid
               key={index}
-              h="160px"
+              h={`${fixedItemHeight}px`}
               templateColumns="repeat(7, calc(100% / 7))"
               borderBottom="1px"
               borderStyle="solid"
