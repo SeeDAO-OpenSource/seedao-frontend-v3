@@ -113,7 +113,7 @@ export const theme = extendTheme({
         },
         item: {
           px: 0,
-          py: '8px',
+          py: 0,
           textAlign: 'center',
           display: 'block',
           ...getNavButtonProps(),

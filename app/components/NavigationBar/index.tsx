@@ -151,6 +151,7 @@ export const NavigationBar: React.FC = () => {
                 display="flex"
                 w="full"
                 h="full"
+                py="8px"
               >
                 EVENT
               </Link>
@@ -162,6 +163,7 @@ export const NavigationBar: React.FC = () => {
                 display="flex"
                 w="full"
                 h="full"
+                py="8px"
               >
                 TASK
               </Link>
@@ -207,6 +209,7 @@ export const NavigationBar: React.FC = () => {
                 display="flex"
                 w="full"
                 h="full"
+                py="8px"
               >
                 SGN
               </Link>
@@ -218,6 +221,7 @@ export const NavigationBar: React.FC = () => {
                 display="flex"
                 w="full"
                 h="full"
+                py="8px"
               >
                 POAP
               </Link>
