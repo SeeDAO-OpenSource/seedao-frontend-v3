@@ -15,9 +15,11 @@ import {
 } from '~/components/StartPageComponents'
 import { ScrollContainer } from '~/components/ScrollContainer'
 import { StripeBackground } from '~/components/StripeBackground'
+import { useEnv } from '~/hooks/useEnv'
 
 export default function Start() {
   const noShowModel = true
+  const env = useEnv()
 
   return (
     <ScrollContainer>
@@ -204,7 +206,9 @@ export default function Start() {
               </HStack>
             </Box>
           </Grid>
-          <WindowFooterLink>accept invitation</WindowFooterLink>
+          <WindowFooterLink href={env.DISCORD_URL}>
+            accept invitation
+          </WindowFooterLink>
         </Window>
         <Window
           header={
@@ -237,7 +241,9 @@ export default function Start() {
               SeeDAO向一切认同 Web3.0，希望改写Web2.0 创作者经济模式的人们敞开。
             </Text>
           </Box>
-          <WindowFooterLink>Open in notion</WindowFooterLink>
+          <WindowFooterLink href={env.NOTION_URL}>
+            Open in notion
+          </WindowFooterLink>
         </Window>
         <Box left="796px" top="1870px" position="absolute">
           <Heading as="h3" fontSize="60px" lineHeight="108px">

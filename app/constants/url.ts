@@ -8,6 +8,7 @@ export function getUrlEnv() {
     'DESCHOOL_URL',
     'FORUM_URL',
     'POAP_URL',
+    'C_COMBINATOR_URL',
   ] as const
   type UrlKey = typeof URL_KEY[number]
   const defaultUrlMap: {
@@ -20,7 +21,8 @@ export function getUrlEnv() {
     OPENSEA_URL: 'https://opensea.io/collection/seedaogenesis',
     MIRROR_URL: 'https://mirror.xyz/seedao.eth',
     DESCHOOL_URL: 'https://deschool.app',
-    FORUM_URL: 'https://forum.seedao.xyz/',
+    FORUM_URL: 'https://forum.seedao.xyz',
+    C_COMBINATOR_URL: 'https://beta.seedao.cc',
   }
   return URL_KEY.reduce(
     (acc, key) => ({

@@ -28,7 +28,10 @@ export const WindowHeader: React.FC<WindowHeaderProps> = ({ icon, text }) => {
   )
 }
 
-export const WindowFooterLink: React.FC<LinkProps> = ({ children }) => {
+export const WindowFooterLink: React.FC<LinkProps> = ({
+  children,
+  ...props
+}) => {
   return (
     <Link
       textTransform="uppercase"
@@ -41,9 +44,11 @@ export const WindowFooterLink: React.FC<LinkProps> = ({ children }) => {
       fontSize="20px"
       textAlign="center"
       fontWeight="semibold"
+      target="_blank"
       _hover={{
         textDecoration: 'none',
       }}
+      {...props}
     >
       {children}
     </Link>

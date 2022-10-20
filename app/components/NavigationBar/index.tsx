@@ -102,7 +102,7 @@ export const NavigationBar: React.FC = () => {
   const location = useLocation()
   const splitLineEl = <Box bg="secondary.900" h="14px" w="2px" mx="16px" />
   const pathnamePart1 = location.pathname.split('/')[1]
-  const { POAP_URL } = useEnv()
+  const { POAP_URL, C_COMBINATOR_URL } = useEnv()
 
   return (
     <Flex
@@ -240,7 +240,9 @@ export const NavigationBar: React.FC = () => {
           Member
         </NavButton>
         {splitLineEl}
-        <NavButton colorScheme="adorn">C-Combinator</NavButton>
+        <Link href={C_COMBINATOR_URL} target="_blank">
+          <NavButton colorScheme="adorn">C-Combinator</NavButton>
+        </Link>
         {splitLineEl}
       </HStack>
       <Side />

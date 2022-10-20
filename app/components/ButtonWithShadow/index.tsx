@@ -6,7 +6,7 @@ import React, { forwardRef } from 'react'
 
 export const ButtonWithShadow = forwardRef<
   HTMLButtonElement,
-  ButtonProps & { bg: string }
+  ButtonProps & { bg: string; href?: string }
 >(({ bg, children, ...props }, ref) => {
   const [fill] = useToken('colors', [bg])
   return (

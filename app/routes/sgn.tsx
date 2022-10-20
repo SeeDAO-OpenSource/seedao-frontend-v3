@@ -20,6 +20,7 @@ import type { ReactNode } from 'react'
 import useSWR from 'swr'
 import { useAPI } from '~/hooks/useAPI'
 import { QueryKey } from '~/api/QueryKey'
+import { useEnv } from '~/hooks/useEnv'
 
 const animationKeyframes = keyframes`
   0% { transform: translateX(0); }
@@ -64,6 +65,7 @@ export default function Sgn() {
   const { data } = useSWR([QueryKey.GetSgnStatisticalData], () =>
     api.getSgnStatisticalData()
   )
+  const env = useEnv()
 
   return (
     <ScrollContainer>
@@ -130,9 +132,11 @@ export default function Sgn() {
                   />
                 </ButtonWithShadow>
                 <ButtonWithShadow
+                  as="a"
                   bg="secondary.900"
                   color="primary.100"
                   textTransform="uppercase"
+                  href={env.OPENSEA_URL}
                 >
                   Opensea
                   <Image
@@ -267,6 +271,7 @@ export default function Sgn() {
                 fontWeight="500"
                 display="inline-flex"
                 alignItems="center"
+                href={env.DISCORD_URL}
               >
                 JOIN SEEDAO
                 <Image
@@ -295,6 +300,7 @@ export default function Sgn() {
                 fontWeight="500"
                 display="inline-flex"
                 alignItems="center"
+                href={env.OPENSEA_URL}
               >
                 TO BUY
                 <Image
