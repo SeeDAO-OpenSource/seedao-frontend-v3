@@ -92,6 +92,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
           fontWeight="semibold"
           fontSize="16px"
           href={applyUrl}
+          target="_blank"
         >
           APPLY
           <Image src="/assets/svg/home-arrow.svg" w="16px" h="16px" ml="16px" />

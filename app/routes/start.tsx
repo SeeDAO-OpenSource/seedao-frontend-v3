@@ -154,6 +154,8 @@ export default function Start() {
             textDecoration="underline"
             mt="30px"
             textTransform="uppercase"
+            href={env.DISCORD_URL}
+            target="_blank"
           >
             More
             <Image

@@ -9,6 +9,7 @@ export function getUrlEnv() {
     'FORUM_URL',
     'POAP_URL',
     'C_COMBINATOR_URL',
+    'SERVER_URL',
   ] as const
   type UrlKey = typeof URL_KEY[number]
   const defaultUrlMap: {
@@ -23,6 +24,7 @@ export function getUrlEnv() {
     DESCHOOL_URL: 'https://deschool.app',
     FORUM_URL: 'https://forum.seedao.xyz',
     C_COMBINATOR_URL: 'https://beta.seedao.cc',
+    SERVER_URL: 'https://seedao.azurewebsites.net',
   }
   return URL_KEY.reduce(
     (acc, key) => ({

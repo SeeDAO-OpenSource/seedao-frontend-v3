@@ -36,10 +36,25 @@ export const HomePageScrollItem: React.FC<HomePageScrollItemProps> = ({
         {time}
       </Box>
     </Heading>
-    <Heading as="h3" mt="20px" fontSize="18px">
+    <Heading
+      as="h3"
+      mt="20px"
+      fontSize="18px"
+      w="full"
+      noOfLines={1}
+      overflow="hidden"
+      textOverflow="ellipsis"
+    >
       {title}
     </Heading>
-    <Text mt="10px" fontSize="13px">
+    <Text
+      mt="10px"
+      fontSize="13px"
+      noOfLines={8}
+      overflowX="hidden"
+      overflowY="auto"
+      textOverflow="ellipsis"
+    >
       {description}
     </Text>
     <Link
@@ -51,6 +66,7 @@ export const HomePageScrollItem: React.FC<HomePageScrollItemProps> = ({
       lineHeight="20px"
       fontWeight="semibold"
       href={href}
+      target="_blank"
     >
       JOIN
       <Image src="/assets/svg/home-arrow.svg" ml="20px" w="24px" h="24px" />

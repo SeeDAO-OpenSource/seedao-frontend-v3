@@ -10,6 +10,7 @@ import {
   Image,
   keyframes,
   Link,
+  Spinner,
   Text,
   VStack,
 } from '@chakra-ui/react'
@@ -345,22 +346,29 @@ export default function Sgn() {
           <Box>OPENSEA DATA</Box>
         </Flex>
         <Flex flex={1} overflow="hidden" position="relative">
-          <Flex
-            flex={1}
-            overflow="hidden"
-            position="absolute"
-            animation={`${animationKeyframes} 10s linear infinite`}
-          >
-            {new Array(2).fill(0).map((_, i) => (
-              <DataSetStack
-                key={i}
-                items={data?.totals}
-                owners={data?.holder}
-                price={data?.floor_price}
-                totalVolume={data?.trade_volume}
-              />
-            ))}
-          </Flex>
+          {!data ? (
+            <Flex px="25px" textTransform="uppercase" align="center">
+              <Spinner w="36px" h="36px" mr="10px" my="auto" />
+              Loading...
+            </Flex>
+          ) : (
+            <Flex
+              flex={1}
+              overflow="hidden"
+              position="absolute"
+              animation={`${animationKeyframes} 10s linear infinite`}
+            >
+              {new Array(2).fill(0).map((_, i) => (
+                <DataSetStack
+                  key={i}
+                  items={data?.totals}
+                  owners={data?.holder}
+                  price={data?.floor_price}
+                  totalVolume={data?.trade_volume}
+                />
+              ))}
+            </Flex>
+          )}
         </Flex>
       </Flex>
     </ScrollContainer>

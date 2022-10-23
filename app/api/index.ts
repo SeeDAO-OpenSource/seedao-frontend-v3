@@ -2,106 +2,42 @@ import type { GetIndexStatisticalData } from '~/api/models/GetIndexStatisticalDa
 import type { HomeEvent } from '~/api/models/HomeEvent'
 import type { HomeNews } from '~/api/models/HomeNews'
 import type { Task } from '~/api/models/Task'
-import { TaskStatus } from '~/api/models/Task'
 import type { GetSgnStatisticalData } from '~/api/models/GetSgnStatisticalData'
+import type { AxiosInstance } from 'axios'
+import axios from 'axios'
 
 export class API {
-  async getHomeStatisticalData(): Promise<GetIndexStatisticalData> {
-    return {
-      member: 8200,
-      token: 12340000,
-      nftmint: 0.05,
-      project: 15,
+  private readonly axiosInstance: AxiosInstance
+
+  constructor(
+    baseURL: string,
+    options?: {
+      prefix: string
     }
+  ) {
+    const prefix = options?.prefix || '/api/v1'
+    this.axiosInstance = axios.create({
+      baseURL: baseURL + prefix,
+    })
+  }
+
+  async getHomeStatisticalData(): Promise<GetIndexStatisticalData> {
+    return this.axiosInstance.post(`/info/basic`).then((res) => res.data.data)
   }
 
   async getHomeEventItems(): Promise<{ events: HomeEvent[] }> {
-    return {
-      events: [
-        {
-          time: 1665670283456,
-          subject: 'something big',
-          content: 'something something, something',
-          link: 'https://blahblah.com',
-        },
-        {
-          time: 1665670283456,
-          subject: 'something big',
-          content: 'something something, something',
-          link: 'https://blahblah.com',
-        },
-      ],
-    }
+    return this.axiosInstance.post(`/events/all`).then((res) => res.data.data)
   }
 
   async getHomeNewsItems(): Promise<{ news: HomeNews[] }> {
-    return {
-      news: [
-        {
-          time: 1665670283456,
-          subject: 'something big',
-          content: 'something something, something',
-          link: 'https://blahblah.com',
-        },
-        {
-          time: 1665670283456,
-          subject: 'something big',
-          content: 'something something, something',
-          link: 'https://blahblah.com',
-        },
-      ],
-    }
+    return this.axiosInstance.post(`/news/all`).then((res) => res.data.data)
   }
 
   async getTask(): Promise<{ tasks: Task[] }> {
-    return {
-      tasks: [
-        {
-          subject: 'something big',
-          content: 'something something, something',
-          workload: 'something something, something', // 工作量
-          poster: 'fatfingererr#0697',
-          reward: 'xxx U xxx $SCORE',
-          link: 'https://blahblah.com',
-          status: TaskStatus.Todo,
-        },
-        {
-          subject: 'something big',
-          content: 'something something, something',
-          workload: 'something something, something', // 工作量
-          poster: 'fatfingererr#0697',
-          reward: 'xxx U xxx $SCORE',
-          link: 'https://blahblah.com',
-          status: TaskStatus.Todo,
-        },
-        {
-          subject: 'something big',
-          content: 'something something, something',
-          workload: 'something something, something', // 工作量
-          poster: 'fatfingererr#0697',
-          reward: 'xxx U xxx $SCORE',
-          link: 'https://blahblah.com',
-          status: TaskStatus.Todo,
-        },
-        {
-          subject: 'something big',
-          workload: 'something something, something',
-          tasks: '',
-          poster: 'fatfingererr#0697',
-          reward: 'xxx U xxx $SCORE',
-          link: 'https://blahblah.com',
-          status: TaskStatus.OnProgress,
-        },
-      ],
-    }
+    return this.axiosInstance.post(`/tasks/all`).then((res) => res.data.data)
   }
 
   async getSgnStatisticalData(): Promise<GetSgnStatisticalData> {
-    return {
-      totals: 480,
-      holder: 412,
-      floor_price: 0.198,
-      trade_volume: 42.19,
-    }
+    return this.axiosInstance.post(`/info/sgn`).then((res) => res.data.data)
   }
 }

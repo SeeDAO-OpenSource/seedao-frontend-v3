@@ -112,6 +112,7 @@ const Events = () => {
             time={dayjs(event.time).format('HH:mm')}
             title={event.subject}
             description={event.content}
+            href={event.link}
           />
         ))}
       </HomePageScrollContainer>
@@ -164,6 +165,7 @@ const News = () => {
             time={dayjs(newItem.time).format('HH:mm')}
             title={newItem.subject}
             description={newItem.content}
+            href={newItem.link}
           />
         ))}
       </HomePageScrollContainer>
