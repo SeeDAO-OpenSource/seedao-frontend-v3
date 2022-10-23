@@ -8,15 +8,8 @@ import {
   Link,
   Text,
 } from '@chakra-ui/react'
-import {
-  MEMBER_FILTER_WIDTH,
-  MEMBER_HALL_WIDTH,
-  MEMBER_ITEM_HEIGHT,
-  MEMBER_SEARCH_HEIGHT,
-} from '~/constants'
+import { MEMBER_HALL_WIDTH, MEMBER_ITEM_HEIGHT } from '~/constants'
 import { Indicator } from '~/components/Indicator'
-import { Search } from '~/components/EventComponents'
-import { Filter } from '~/components/Filter'
 import { SGNS } from '~/data/sgn'
 import { Virtuoso } from 'react-virtuoso'
 import { AvatarsBackground, ITEM_SIZE } from '~/components/AvatarsBackground'
@@ -88,23 +81,7 @@ export default function Member() {
           </Box>
         </Flex>
       </Box>
-      <Grid
-        templateRows={`${MEMBER_SEARCH_HEIGHT}px calc(100% - ${MEMBER_SEARCH_HEIGHT}px)`}
-        mb="-1px"
-      >
-        <Grid
-          templateColumns={`calc(100% - ${MEMBER_FILTER_WIDTH}px) ${MEMBER_FILTER_WIDTH}px`}
-          borderBottom="1px"
-          borderColor="secondary.900"
-          borderStyle="solid"
-        >
-          <Search
-            borderRight="1px"
-            borderColor="secondary.900"
-            borderStyle="solid"
-          />
-          <Filter />
-        </Grid>
+      <Grid mb="-1px">
         <Box
           id={MEMBER_LIST_ID}
           as={Virtuoso}
