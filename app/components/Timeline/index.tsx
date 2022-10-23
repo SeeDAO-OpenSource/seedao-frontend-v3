@@ -1,3 +1,4 @@
+import type { StackProps } from '@chakra-ui/react'
 import { Box, VStack, Flex } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 
@@ -6,20 +7,22 @@ export interface TimelineItem {
   content: ReactNode
 }
 
-export interface TimelineProps {
+export interface TimelineProps extends StackProps {
   items: TimelineItem[]
 }
 
-export const Timeline: React.FC<TimelineProps> = ({ items }) => {
+export const Timeline: React.FC<TimelineProps> = ({ items, ...props }) => {
   return (
     <VStack
       borderLeft="2px"
       borderStyle="solid"
       borderColor="secondary.900"
       spacing="30px"
+      w="full"
+      {...props}
     >
       {items.map((item, i) => (
-        <Flex key={i} pl="20px" direction="column" position="relative">
+        <Flex key={i} pl="20px" direction="column" position="relative" w="full">
           <Box
             position="absolute"
             top="0"
@@ -36,7 +39,9 @@ export const Timeline: React.FC<TimelineProps> = ({ items }) => {
           >
             {item.time}
           </Box>
-          <Box lineHeight="25.6px">{item.content}</Box>
+          <Box lineHeight="25.6px" textTransform="uppercase">
+            {item.content}
+          </Box>
         </Flex>
       ))}
     </VStack>
