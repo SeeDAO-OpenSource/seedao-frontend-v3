@@ -94,26 +94,7 @@ export default function Roadmap() {
     },
     {
       time: '04.12',
-      content: (
-        <>
-          《春天音乐会》 筹备 <br />
-          <Link
-            textTransform="uppercase"
-            display="inline-flex"
-            alignItems="center"
-            target="_blank"
-            fontSize="14px"
-          >
-            More
-            <Image
-              src="/assets/svg/home-arrow.svg"
-              w="14px"
-              h="14px"
-              ml="6px"
-            />
-          </Link>
-        </>
-      ),
+      content: <>《春天音乐会》 筹备</>,
     },
     {
       time: '04.11',
@@ -172,6 +153,7 @@ export default function Roadmap() {
             alignItems="center"
             target="_blank"
             fontSize="14px"
+            href="https://twitter.com/see_dao/status/1492359895697412098?lang=eu"
           >
             More
             <Image
@@ -196,13 +178,14 @@ export default function Roadmap() {
       time: '01.23',
       content: (
         <>
-          SeeDAO 贡献记录体系 MSN 开发完成 <br />
+          SeeDAO 贡献记录体系 MSC 开发完成 <br />
           <Link
             textTransform="uppercase"
             display="inline-flex"
             alignItems="center"
             target="_blank"
             fontSize="14px"
+            href="https://seedao.notion.site/SGN-MSC-321d0de03808467fa2e18fd2c9be517f"
           >
             More
             <Image
@@ -230,6 +213,7 @@ export default function Roadmap() {
             alignItems="center"
             target="_blank"
             fontSize="14px"
+            href="https://mp.weixin.qq.com/s/JbmeG-azc3ptl8E9dKZDEg"
           >
             More
             <Image
@@ -259,6 +243,7 @@ export default function Roadmap() {
             alignItems="center"
             target="_blank"
             fontSize="14px"
+            href="https://seedao.notion.site/SeeDAO-ce6da954f0e74a44aed21a4f64af0bef"
           >
             More
             <Image
@@ -287,22 +272,7 @@ export default function Roadmap() {
           <Box as="span" color="adorn.900">
             首届元宇宙创作者嘉年华
           </Box>{' '}
-          发布 <br />
-          <Link
-            textTransform="uppercase"
-            display="inline-flex"
-            alignItems="center"
-            target="_blank"
-            fontSize="14px"
-          >
-            More
-            <Image
-              src="/assets/svg/home-arrow.svg"
-              w="14px"
-              h="14px"
-              ml="6px"
-            />
-          </Link>
+          发布
         </>
       ),
     },
@@ -320,6 +290,7 @@ export default function Roadmap() {
             alignItems="center"
             target="_blank"
             fontSize="14px"
+            href="https://seedao.notion.site/SGN-MSC-321d0de03808467fa2e18fd2c9be517f"
           >
             More
             <Image
@@ -359,6 +330,7 @@ export default function Roadmap() {
             alignItems="center"
             target="_blank"
             fontSize="14px"
+            href="https://www.panewslab.com/zh/articledetails/D70251981.html"
           >
             More
             <Image
