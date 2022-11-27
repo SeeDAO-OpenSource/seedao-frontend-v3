@@ -22,6 +22,8 @@ import {
 } from '~/constants'
 import { RoutePath } from '~/constants/RoutePath'
 import { Filter } from '~/components/Filter'
+import { getUrlEnv } from '~/constants/url'
+import { redirect } from '@remix-run/node'
 
 const totalCount = 500
 const baseLineIndex = Math.floor(totalCount / 2)
@@ -35,6 +37,14 @@ const exampleScheduleItem = {
           这一切Fi都来自一种Fi，那就是酱酱~DeFi:tada: :tada:
           来！今天就告诉你到底什么是DeFi`,
   moreHref: RoutePath.Event,
+}
+
+export async function loader() {
+  const eventUrl = getUrlEnv().EVENT_URL
+  if (eventUrl) {
+    return redirect(eventUrl)
+  }
+  return null
 }
 
 export default function Event() {
