@@ -4,7 +4,7 @@
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
-    "start": "remix-serve build"
+    "start": "npm install @remix-run/serve -g && remix-serve build"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.1",
