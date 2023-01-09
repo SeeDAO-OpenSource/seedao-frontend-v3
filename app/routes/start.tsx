@@ -6,16 +6,16 @@ import {
   Grid,
   Link,
   HStack,
-  Flex,
-} from '@chakra-ui/react'
+  Flex
+} from "@chakra-ui/react"
 import {
   Window,
   WindowHeader,
-  WindowFooterLink,
-} from '~/components/StartPageComponents'
-import { ScrollContainer } from '~/components/ScrollContainer'
-import { StripeBackground } from '~/components/StripeBackground'
-import { useEnv } from '~/hooks/useEnv'
+  WindowFooterLink
+} from "~/components/StartPageComponents"
+import { ScrollContainer } from "~/components/ScrollContainer"
+import { StripeBackground } from "~/components/StripeBackground"
+import { useEnv } from "~/hooks/useEnv"
 
 export default function Start() {
   const noShowModel = true
@@ -144,9 +144,17 @@ export default function Start() {
             textAlign="justify"
             textTransform="uppercase"
           >
-            加入Seedao Discord，
             <br />
-            你可以把这里想象成是一个虚拟世界里聚集创作者的大“工厂”，而各个不同的“类别”就是工厂的厂区，频道就是厂区内的厂房或者车间。
+            进入 DeSchool
+            <br />
+            观看 onboarding 视频、领取 SBT
+            <br />
+            你就正式成为 SeeDAO 新成员啦！
+            <br />
+            点击加入 Discord，提案、协作、共创
+            <br />
+            就在这里发生！
+            <br />
           </Text>
           <Link
             display="flex"
@@ -154,10 +162,10 @@ export default function Start() {
             textDecoration="underline"
             mt="30px"
             textTransform="uppercase"
-            href={env.DISCORD_URL}
+            href={"https://deschool.app/courses/course/62f0adc68b90ee1aa913a965/62f0adc68b90ee1aa913a966/learning/Video/63a46ae99ce6e09dd4811471"}
             target="_blank"
           >
-            More
+            打开 DeSchool
             <Image
               src="/assets/svg/home-arrow.svg"
               w="16px"
@@ -170,9 +178,13 @@ export default function Start() {
           header={
             <WindowHeader
               icon={
-                <Image src="/assets/svg/social/discord.svg" w="24px" h="24px" />
+                <Image
+                  src="/assets/svg/social/deschool.png"
+                  w="24px"
+                  h="24px"
+                />
               }
-              text="Discord"
+              text="DeSchool"
             />
           }
           left="796px"
@@ -180,6 +192,56 @@ export default function Start() {
           position="absolute"
           bg="primary.100"
           w="460px"
+        >
+          <Grid
+            px="30px"
+            pt="30px"
+            pb="58px"
+            templateColumns="100px calc(100% - 100px - 20px)"
+            gap="20px"
+          >
+            <Image src="/assets/png/noTitle-removebg-preview.png" />
+            <Box>
+              <Text fontSize="20px" lineHeight="20px" mb="10px">
+                新手入门系列课程
+              </Text>
+              <Heading as="h5" fontSize="32px" lineHeight="32px">
+                SeeDAO 登船指南
+              </Heading>
+              <HStack mt="18px" spacing="20px" fontSize="16px">
+                <Flex align="center">
+                  <Box bg="pass.100" w="6px" h="6px" mr="7px" rounded="10px" />
+                  36 Likes
+                </Flex>
+                <Flex align="center">
+                  <Box bg="pass.100" w="6px" h="6px" mr="7px" rounded="10px" />
+                  4,258 Enrolled
+                </Flex>
+              </HStack>
+            </Box>
+          </Grid>
+          <WindowFooterLink
+            href={
+              "https://deschool.app/courses/course/62f0adc68b90ee1aa913a965/62f0adc68b90ee1aa913a966/learning/Video/63a46ae99ce6e09dd4811471"
+            }
+          >
+            打开 DeSchool
+          </WindowFooterLink>
+        </Window>
+        <Window
+          header={
+            <WindowHeader
+              icon={
+                <Image src="/assets/svg/social/discord.svg" w="24px" h="24px" />
+              }
+              text="Discord"
+            />
+          }
+          w="460px"
+          left="182px"
+          top="1990px"
+          position="absolute"
+          bg="primary.100"
         >
           <Grid
             px="30px"
@@ -203,53 +265,18 @@ export default function Start() {
                 </Flex>
                 <Flex align="center">
                   <Box bg="pass.100" w="6px" h="6px" mr="7px" rounded="10px" />
-                  85,81 Members
+                  10,482 Members
                 </Flex>
               </HStack>
             </Box>
           </Grid>
           <WindowFooterLink href={env.DISCORD_URL}>
-            accept invitation
-          </WindowFooterLink>
-        </Window>
-        <Window
-          header={
-            <WindowHeader
-              icon={
-                <Image src="/assets/svg/social/notion.svg" w="24px" h="24px" />
-              }
-              text="Seedao-wiki"
-            />
-          }
-          w="306px"
-          left="182px"
-          top="1990px"
-          position="absolute"
-          bg="primary.100"
-        >
-          <Box pt="20px" px="16px" pb="38px">
-            <Heading as="h5" fontSize="32px" mb="10px">
-              🌝
-            </Heading>
-            <Heading
-              as="h5"
-              fontSize="32px"
-              mb="10px"
-              textTransform="uppercase"
-            >
-              SEEDAO-wiki
-            </Heading>
-            <Text fontSize="14px">
-              SeeDAO向一切认同 Web3.0，希望改写Web2.0 创作者经济模式的人们敞开。
-            </Text>
-          </Box>
-          <WindowFooterLink href={env.NOTION_URL}>
-            Open in notion
+            打开 Discord 服务器
           </WindowFooterLink>
         </Window>
         <Box left="796px" top="1870px" position="absolute">
           <Heading as="h3" fontSize="60px" lineHeight="108px">
-            Step1
+            Step2
           </Heading>
           <Text
             w="460px"
@@ -259,24 +286,21 @@ export default function Start() {
             textAlign="justify"
             textTransform="uppercase"
           >
-            打开Seedao WIKI，
+            <br />
+            打开 SeeDAO 城邦广场
             <br />
             在这里，你可以找到一切你感兴趣的内容
             <br />
+            🗂 城邦服务 - 公共政治中心，带你卷入协作、获取支持
             <br />
-            🚘 新手指引 - 进入SeeDAO前，先看这里了解我们
+            🙌🏻 活跃公会 - 专业人才聚集地，共同成长探索
             <br />
-            📑 治理文档 - 最重要的治理规则，确保你认可后再加入
+            💑 城邦项目- SeeDAO 成员自主发起的建设性项目
             <br />
-            🙌🏻 公会 - 公会是人才聚集进行纵向治理的单元
+            🚘 孵化项目 - 为 DAO 所孵化的基础设施
             <br />
-            💑 项目 - 项目是横向链接公会进行创造的地方
+            📒 传送门 - 获取在各个平台的咨询、参与治理
             <br />
-            📒 知识库 - 教育是seedao的日常工作
-            <br />
-            🗂 素材库
-            <br />
-            📝 提案区
             <br />
           </Text>
         </Box>

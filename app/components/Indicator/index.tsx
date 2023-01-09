@@ -9,7 +9,7 @@ export const Indicator: React.FC<{
 }> = ({ keyName, value = '-', valueUnit }) => {
   const abbreviatedValue = useMemo(() => {
     if (typeof value === 'number' && value > 1000) {
-      const valueWithFixed = (value / 1000).toFixed(1)
+      const valueWithFixed = (value / 1000).toFixed(0)
       return (
         (valueWithFixed[valueWithFixed.length - 1] === '0' &&
         valueWithFixed[valueWithFixed.length - 2] === '.'

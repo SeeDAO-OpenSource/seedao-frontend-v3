@@ -131,7 +131,13 @@ export const NavigationBar: React.FC = () => {
         >
           Home
         </NavButton>
-        <Menu placement="bottom">
+        <NavButton
+          active={location.pathname === RoutePath.Event}
+          to={RoutePath.Event}
+        >
+          EVENT
+        </NavButton>
+        {/* <Menu placement="bottom">
           <MenuButton
             {...getNavButtonProps({
               active:
@@ -171,7 +177,7 @@ export const NavigationBar: React.FC = () => {
               </Link>
             </MenuItem>
           </MenuList>
-        </Menu>
+        </Menu> */}
         <NavButton
           active={
             pathnamePart1 === RoutePath.Deschool ||
@@ -190,7 +196,13 @@ export const NavigationBar: React.FC = () => {
         >
           govern
         </NavButton>
-        <Menu placement="bottom">
+        <NavButton
+          active={location.pathname === RoutePath.Sgn}
+          to={RoutePath.Sgn}
+        >
+          SGN
+        </NavButton>
+        {/* <Menu placement="bottom">
           <MenuButton
             {...getNavButtonProps({
               active:
@@ -229,7 +241,7 @@ export const NavigationBar: React.FC = () => {
               </Link>
             </MenuItem>
           </MenuList>
-        </Menu>
+        </Menu> */}
         <NavButton
           active={
             pathnamePart1 === RoutePath.Member ||
