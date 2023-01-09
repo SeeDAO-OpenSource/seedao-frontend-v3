@@ -162,7 +162,9 @@ export default function Start() {
             textDecoration="underline"
             mt="30px"
             textTransform="uppercase"
-            href={"https://deschool.app/courses/course/62f0adc68b90ee1aa913a965/62f0adc68b90ee1aa913a966/learning/Video/63a46ae99ce6e09dd4811471"}
+            href={
+              "https://deschool.app/courses/course/62f0adc68b90ee1aa913a965/62f0adc68b90ee1aa913a966/learning/Video/63a46ae99ce6e09dd4811471"
+            }
             target="_blank"
           >
             打开 DeSchool
@@ -172,6 +174,19 @@ export default function Start() {
               h="16px"
               ml="16px"
             />
+          </Link>
+          <Link
+            display="flex"
+            alignItems="center"
+            textDecoration="underline"
+            mt="30px"
+            textTransform="uppercase"
+            href={
+              env.DISCORD_URL
+            }
+            target="_blank"
+          >
+            进入 Discord
           </Link>
         </Box>
         <Window
