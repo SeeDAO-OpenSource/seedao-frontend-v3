@@ -242,7 +242,7 @@ export const NavigationBar: React.FC = () => {
             </MenuItem>
           </MenuList>
         </Menu> */}
-        <NavButton
+        {/* <NavButton
           active={
             pathnamePart1 === RoutePath.Member ||
             location.pathname === RoutePath.Member
@@ -250,7 +250,7 @@ export const NavigationBar: React.FC = () => {
           to={RoutePath.Member}
         >
           Member
-        </NavButton>
+        </NavButton> */}
         {splitLineEl}
         <Link href={C_COMBINATOR_URL} target="_blank">
           <NavButton colorScheme="adorn">C-Combinator</NavButton>
