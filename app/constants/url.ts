@@ -10,6 +10,7 @@ export function getUrlEnv() {
     'POAP_URL',
     'C_COMBINATOR_URL',
     'SERVER_URL',
+    'EVENT_URL',
   ] as const
   type UrlKey = typeof URL_KEY[number]
   const defaultUrlMap: {
@@ -25,6 +26,8 @@ export function getUrlEnv() {
     FORUM_URL: 'https://forum.seedao.xyz',
     C_COMBINATOR_URL: 'https://beta.seedao.cc',
     SERVER_URL: 'https://seedao.azurewebsites.net',
+    EVENT_URL:
+      'https://calendar.google.com/calendar/embed?src=0vfpndha1r2ic814uiddqj52g0veul38%40import.calendar.google.com',
   }
   return URL_KEY.reduce(
     (acc, key) => ({

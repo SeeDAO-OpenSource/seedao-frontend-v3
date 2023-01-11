@@ -16,12 +16,26 @@ import { AvatarsBackground, ITEM_SIZE } from '~/components/AvatarsBackground'
 import { MemberTags } from '~/components/MemberTags'
 import { useState } from 'react'
 import { useDebounce } from '~/hooks/useDebounce'
+import useSWR from 'swr'
+import { QueryKey } from '~/api/QueryKey'
+import { useAPI } from '~/hooks/useAPI'
 
 const MEMBER_LIST_ID = 'member_list_id'
 
 export default function Member() {
   const [activeIndex, setActiveIndex] = useState(0)
   const onChangeActiveIndex = useDebounce(setActiveIndex)
+  const api = useAPI()
+  const { data: homeStatisticalData } = useSWR(
+    [QueryKey.GetHomeStatisticalData],
+    async () => {
+      return api.getHomeStatisticalData()
+    }
+  )
+  const { data: sgnStatisticalData } = useSWR(
+    [QueryKey.GetSgnStatisticalData],
+    () => api.getSgnStatisticalData()
+  )
 
   return (
     <Grid
@@ -74,9 +88,25 @@ export default function Member() {
               highlight
             </Heading>
             <HStack spacing="50px">
-              <Indicator value={420} keyName="SGN HOLDER" valueUnit="+" />
-              <Indicator value={8200} keyName="Member" valueUnit="+" />
-              <Indicator value={5} keyName="NFT Mint" valueUnit="%" />
+              <Indicator
+                value={sgnStatisticalData?.holder}
+                keyName="SGN HOLDER"
+                valueUnit="+"
+              />
+              <Indicator
+                value={homeStatisticalData?.member}
+                keyName="Member"
+                valueUnit="+"
+              />
+              <Indicator
+                value={
+                  homeStatisticalData?.nftmint
+                    ? homeStatisticalData.nftmint * 100
+                    : undefined
+                }
+                keyName="NFT Mint"
+                valueUnit="%"
+              />
             </HStack>
           </Box>
         </Flex>

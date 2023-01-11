@@ -46,7 +46,7 @@ const WelCome = () => (
     </HeadingWithSub>
     <Flex>
       <Text fontSize="16px" lineHeight="27px" fontWeight="400">
-        元宇宙在呼唤创作者，一场前所未有的组织形态变革也在呼唤创作者。SeeDAO正是因此而设。我们的愿景是帮助一切想要从Web2.0世界来到Web3.0的创作者，成为你们可信的桥梁和助手。或许你们正在为不会调用Web3.0的工具而困惑，为不知如何启动社区而苦恼，为不知如何同其他社区协同而焦虑。SeeDAO正是为你们而设。
+      SeeDAO是一个致力于连接100万 Web3游民的数字城邦。我们的愿景是：在基于地缘的民族国家之外，在赛博世界另建一片人类的生存空间。在这片空间中，人类可以重新建立组织和连接，并逐渐将影响力辐射至现实世界。<br/>SeeDAO致力于促进社区成员在城邦中的连接、流动、交换与自由。任何一个想要在赛博世界建设这片土地的朋友，欢迎你来到SeeDAO！你我将共同写下虚拟时代的诗篇。
       </Text>
       <Image src="/assets/svg/welcome-icon.svg" w="64px" h="64px" ml="56px" />
     </Flex>
@@ -242,7 +242,7 @@ const Footer: React.FC = () => (
     textTransform="uppercase"
     fontWeight="semibold"
   >
-    © 2022 seedao
+    © 2023 seedao
   </Box>
 )
 

@@ -68,7 +68,7 @@ export const HomePageScrollItem: React.FC<HomePageScrollItemProps> = ({
       href={href}
       target="_blank"
     >
-      JOIN
+      MORE
       <Image src="/assets/svg/home-arrow.svg" ml="20px" w="24px" h="24px" />
     </Link>
   </Flex>

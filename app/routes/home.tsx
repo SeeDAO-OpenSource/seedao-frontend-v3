@@ -99,12 +99,12 @@ export default function Home() {
               as="h1"
               textTransform="uppercase"
               mt="25px"
-              fontSize="140px"
-              lineHeight="140px"
+              fontSize="80px"
+              lineHeight="80px"
               fontWeight="400"
             >
-              DAO it <br />
-              do it
+              Build your <br />
+              network polis
             </Heading>
             <Heading
               as="h2"
@@ -113,7 +113,7 @@ export default function Home() {
               textTransform="uppercase"
               mt="13px"
             >
-              探索基于Web3.0的内容生产关系
+              连接 100 万 Web3 游民的数字城邦
             </Heading>
             <RemixLink to="/start">
               <Button
@@ -260,7 +260,7 @@ export default function Home() {
               <Link href={ENV.OPENSEA_URL} target="_blank">
                 <Image src="/assets/svg/social/opensea.svg" w="24px" h="24px" />
               </Link>
-              <Link>
+              <Link href={"http://weixin.qq.com/r/3DgbA--EXaIirbtg923O"} target="_blank">
                 <Image src="/assets/svg/social/wechat.svg" w="24px" h="24px" />
               </Link>
               <Link href={ENV.MIRROR_URL} target="_blank">
@@ -277,6 +277,7 @@ export default function Home() {
             transform:
               isHomeRoadMap || isHomeAbout ? `translateX(-50%)` : undefined,
           }}
+          hidden={isHomeRoadMap || isHomeAbout}
         >
           <Fade isOpen={isHome}>
             <HomeIndex />

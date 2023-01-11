@@ -131,7 +131,13 @@ export const NavigationBar: React.FC = () => {
         >
           Home
         </NavButton>
-        <Menu placement="bottom">
+        <NavButton
+          active={location.pathname === RoutePath.Event}
+          to={RoutePath.Event}
+        >
+          EVENT
+        </NavButton>
+        {/* <Menu placement="bottom">
           <MenuButton
             {...getNavButtonProps({
               active:
@@ -171,7 +177,7 @@ export const NavigationBar: React.FC = () => {
               </Link>
             </MenuItem>
           </MenuList>
-        </Menu>
+        </Menu> */}
         <NavButton
           active={
             pathnamePart1 === RoutePath.Deschool ||
@@ -190,54 +196,11 @@ export const NavigationBar: React.FC = () => {
         >
           govern
         </NavButton>
-        <Menu placement="bottom">
-          <MenuButton
-            {...getNavButtonProps({
-              active:
-                pathnamePart1 === RoutePath.Sgn ||
-                location.pathname === RoutePath.Sgn ||
-                pathnamePart1 === RoutePath.Poap ||
-                location.pathname === RoutePath.Poap,
-            })}
-            textTransform="uppercase"
-          >
-            Mint
-          </MenuButton>
-          <MenuList>
-            <MenuItem>
-              <Link
-                as={RemixLink}
-                to={RoutePath.Sgn}
-                display="flex"
-                w="full"
-                h="full"
-                py="8px"
-              >
-                SGN
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link
-                href={POAP_URL}
-                target="_blank"
-                display="flex"
-                w="full"
-                h="full"
-                py="8px"
-              >
-                POAP
-              </Link>
-            </MenuItem>
-          </MenuList>
-        </Menu>
         <NavButton
-          active={
-            pathnamePart1 === RoutePath.Member ||
-            location.pathname === RoutePath.Member
-          }
-          to={RoutePath.Member}
+          active={location.pathname === RoutePath.Sgn}
+          to={RoutePath.Sgn}
         >
-          Member
+          SGN
         </NavButton>
         {splitLineEl}
         <Link href={C_COMBINATOR_URL} target="_blank">
