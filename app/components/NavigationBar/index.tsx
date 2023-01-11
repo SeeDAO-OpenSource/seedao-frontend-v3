@@ -202,56 +202,6 @@ export const NavigationBar: React.FC = () => {
         >
           SGN
         </NavButton>
-        {/* <Menu placement="bottom">
-          <MenuButton
-            {...getNavButtonProps({
-              active:
-                pathnamePart1 === RoutePath.Sgn ||
-                location.pathname === RoutePath.Sgn ||
-                pathnamePart1 === RoutePath.Poap ||
-                location.pathname === RoutePath.Poap,
-            })}
-            textTransform="uppercase"
-          >
-            Mint
-          </MenuButton>
-          <MenuList>
-            <MenuItem>
-              <Link
-                as={RemixLink}
-                to={RoutePath.Sgn}
-                display="flex"
-                w="full"
-                h="full"
-                py="8px"
-              >
-                SGN
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link
-                href={POAP_URL}
-                target="_blank"
-                display="flex"
-                w="full"
-                h="full"
-                py="8px"
-              >
-                POAP
-              </Link>
-            </MenuItem>
-          </MenuList>
-        </Menu> */}
-        {/* <NavButton
-          active={
-            pathnamePart1 === RoutePath.Member ||
-            location.pathname === RoutePath.Member
-          }
-          to={RoutePath.Member}
-        >
-          Member
-        </NavButton> */}
-        
         {splitLineEl}
         <Link href={C_COMBINATOR_URL} target="_blank">
           <NavButton colorScheme="adorn">C-Combinator</NavButton>
