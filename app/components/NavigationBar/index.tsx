@@ -251,6 +251,7 @@ export const NavigationBar: React.FC = () => {
         >
           Member
         </NavButton> */}
+        
         {splitLineEl}
         <Link href={C_COMBINATOR_URL} target="_blank">
           <NavButton colorScheme="adorn">C-Combinator</NavButton>
