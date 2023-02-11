@@ -22,6 +22,7 @@ import useSWR from 'swr'
 import { useAPI } from '~/hooks/useAPI'
 import { QueryKey } from '~/api/QueryKey'
 import { useEnv } from '~/hooks/useEnv'
+import { useMintSGN } from '~/hooks/useMintSGN'
 
 const animationKeyframes = keyframes`
   0% { transform: translateX(0); }
@@ -67,6 +68,7 @@ export default function Sgn() {
     api.getSgnStatisticalData()
   )
   const env = useEnv()
+  const { onMint, isMinting } = useMintSGN()
 
   return (
     <ScrollContainer>
@@ -122,6 +124,8 @@ export default function Sgn() {
                   bg="pass.100"
                   color="primary.100"
                   textTransform="uppercase"
+                  onClick={onMint}
+                  isLoading={isMinting}
                 >
                   Mint
                   <Image

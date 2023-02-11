@@ -26,6 +26,7 @@ import { AnimationContainer } from '~/components/AnimationContainer'
 import { getUrlEnv } from '~/constants/url'
 import { json } from '@remix-run/node'
 import { EnvContext } from '~/hooks/useEnv'
+import { getContractEnv } from '~/constants/contract'
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -38,6 +39,7 @@ export function loader() {
   return json({
     PUBLIC_ENV: {
       ...URL_ENV,
+      ...getContractEnv(),
     },
   })
 }
