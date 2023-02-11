@@ -1,11 +1,11 @@
 import { useCallback, useState } from 'react'
 import { Mainnet, useEthers } from '@usedapp/core'
-import { useToast } from '@chakra-ui/react'
 import { useEnv } from '~/hooks/useEnv'
 import { checkIsInWhitelist, getProof } from '~/utils/checklist'
 import { ethers } from 'ethers'
 import { abi_new } from '~/abi/SeeDAONew.json'
 import { useCreateWeb3Provider } from '~/hooks/useCreateWeb3Provider'
+import { useToast } from './useToast'
 
 export function useMintSGN() {
   const [isMinting, setIsMinting] = useState(false)
