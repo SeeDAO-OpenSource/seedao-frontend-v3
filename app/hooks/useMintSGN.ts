@@ -29,7 +29,13 @@ export function useMintSGN() {
         provider.getSigner()
       )
       try {
-        return sgnContract.mintWhiteList(batchId, proof)
+        const mintResult = sgnContract.mintWhiteList(batchId, proof)
+        toast({
+          status: 'success',
+          title: 'Mint 成功',
+          description: '可能需要等待几分钟上链哦~ ',
+        })
+        return mintResult
       } catch (error: any) {
         const message = error?.error?.message || error?.message
         toast({
