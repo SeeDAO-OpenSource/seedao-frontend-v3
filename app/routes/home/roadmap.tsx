@@ -27,7 +27,9 @@ export default function Roadmap() {
           <li>token发出</li>
           <li>战略孵化20个项目</li>
           <li>社区规模达到5-10万人</li>
-          <li>完成数字城邦乐高的搭建。连接全球40+城市（城市联络人与战略合作线下空间）。</li>
+          <li>
+            完成数字城邦乐高的搭建。连接全球40+城市（城市联络人与战略合作线下空间）。
+          </li>
           <li>贡献者数量5000+，核心贡献者数量500+</li>
           <li>在这一年，SeeDAO开始拥有除汉语之外的其他语言社区。</li>
         </ul>
@@ -351,15 +353,21 @@ export default function Roadmap() {
   ]
 
   return (
-    <Flex w="full" h="full" py={`${PADDING_Y}px`} px={`${PADDING_X}px`}>
+    <Flex
+      bg="primary.100"
+      w="full"
+      h="full"
+      py={`${PADDING_Y}px`}
+      px={`${PADDING_X}px`}
+    >
       <Box h="auto">
         <HeadingWithSub sub="路线图">Roadmap</HeadingWithSub>
-        <Text mt="22px" mb="52px">
-          
-        </Text>
+        <Text mt="22px" mb="52px"></Text>
 
         <Heading as="h2" textTransform="uppercase" fontSize="32px" mb="30px">
-        五年计划<br/>影响世界的大型在线游戏
+          五年计划
+          <br />
+          影响世界的大型在线游戏
         </Heading>
 
         <Timeline items={futureTimelineItems} />
@@ -371,7 +379,9 @@ export default function Roadmap() {
           mt="60px"
           mb="30px"
         >
-          数字城邦时代<br/>2022.7.6 - 
+          数字城邦时代
+          <br />
+          2022.7.6 -
         </Heading>
 
         <Timeline items={the2022TimeLineItems} />
@@ -383,7 +393,9 @@ export default function Roadmap() {
           mt="60px"
           mb="30px"
         >
-          冒险者时代<br/>2021.11 - 2022.7.6
+          冒险者时代
+          <br />
+          2021.11 - 2022.7.6
         </Heading>
 
         <Timeline items={the2021TimeLineItems} />
